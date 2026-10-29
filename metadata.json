@@ -1,0 +1,6 @@
+{
+  "name": "Naija Radio",
+  "description": "Discover and listen live to Nigerian radio stations across Lagos, Abuja, Kano, Ibadan, Port Harcourt, and every state by frequency, genre, and language.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
