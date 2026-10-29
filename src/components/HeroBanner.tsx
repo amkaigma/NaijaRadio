@@ -14,10 +14,16 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectState, onSelectG
   const topStates = [
     { name: 'Lagos', count: stations.filter(s => s.state === 'Lagos').length },
     { name: 'Abuja (FCT)', count: stations.filter(s => s.state === 'Abuja (FCT)').length },
-    { name: 'Oyo', count: stations.filter(s => s.state === 'Oyo').length },
     { name: 'Kano', count: stations.filter(s => s.state === 'Kano').length },
+    { name: 'Oyo', count: stations.filter(s => s.state === 'Oyo').length },
     { name: 'Rivers', count: stations.filter(s => s.state === 'Rivers').length },
     { name: 'Enugu', count: stations.filter(s => s.state === 'Enugu').length },
+    { name: 'Kaduna', count: stations.filter(s => s.state === 'Kaduna').length },
+    { name: 'Delta', count: stations.filter(s => s.state === 'Delta').length },
+    { name: 'Borno', count: stations.filter(s => s.state === 'Borno').length },
+    { name: 'Plateau', count: stations.filter(s => s.state === 'Plateau').length },
+    { name: 'Akwa Ibom', count: stations.filter(s => s.state === 'Akwa Ibom').length },
+    { name: 'Sokoto', count: stations.filter(s => s.state === 'Sokoto').length },
   ];
 
   return (

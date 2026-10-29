@@ -85,5 +85,10 @@ export const ALL_LANGUAGES: NigerianLanguage[] = [
   'Yoruba',
   'Hausa',
   'Igbo',
+  'Fulfulde',
+  'Kanuri',
+  'Nupe',
+  'Igala',
+  'Ebira',
   'Multilingual',
 ];

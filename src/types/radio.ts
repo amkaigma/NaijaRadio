@@ -13,6 +13,11 @@ export type NigerianLanguage =
   | 'Yoruba'
   | 'Hausa'
   | 'Igbo'
+  | 'Fulfulde'
+  | 'Kanuri'
+  | 'Nupe'
+  | 'Igala'
+  | 'Ebira'
   | 'Multilingual';
 
 export type StationGenre = 

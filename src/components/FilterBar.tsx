@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Filter, X, ChevronDown, Radio, Globe, Layers, MapPin, SlidersHorizontal, Check } from 'lucide-react';
 import { FilterState, NigerianLanguage, Region, StationGenre } from '../types/radio';
 import { ALL_GENRES, ALL_LANGUAGES, NIGERIAN_REGIONS, NIGERIAN_STATES } from '../data/nigeriaGeo';
+import { useRadioPlayer } from '../context/PlayerContext';
 
 interface FilterBarProps {
   filters: FilterState;
@@ -18,6 +19,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   totalFilteredCount,
   totalCount,
 }) => {
+  const { stations } = useRadioPlayer();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   // Collect available cities based on selected state or all states
@@ -174,11 +176,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 className="w-full appearance-none bg-[#0a2b1c] border border-emerald-700/60 rounded-xl px-3 py-2 text-xs font-medium text-white focus:outline-none focus:ring-1 focus:ring-amber-400 focus:border-amber-400 cursor-pointer"
               >
                 <option value="all">All States (36 + FCT)</option>
-                {NIGERIAN_STATES.map((s) => (
-                  <option key={s.name} value={s.name}>
-                    {s.name} ({s.region})
-                  </option>
-                ))}
+                {NIGERIAN_STATES.map((s) => {
+                  const count = stations.filter(stn => stn.state === s.name).length;
+                  return (
+                    <option key={s.name} value={s.name}>
+                      {s.name} ({s.region}) — {count} {count === 1 ? 'station' : 'stations'}
+                    </option>
+                  );
+                })}
               </select>
               <ChevronDown className="w-3.5 h-3.5 text-emerald-400 absolute right-2.5 top-3 pointer-events-none" />
             </div>

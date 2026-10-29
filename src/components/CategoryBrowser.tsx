@@ -1,32 +1,41 @@
-import React from 'react';
-import { Globe, Music, Radio, MessageSquare, Compass, Shield, Mic, Headphones } from 'lucide-react';
-import { NIGERIAN_REGIONS, ALL_GENRES, ALL_LANGUAGES } from '../data/nigeriaGeo';
+import React, { useState } from 'react';
+import { Globe, Music, Radio, MessageSquare, Compass, Shield, Mic, Headphones, MapPin, Search, ChevronRight } from 'lucide-react';
+import { NIGERIAN_REGIONS, ALL_GENRES, ALL_LANGUAGES, NIGERIAN_STATES } from '../data/nigeriaGeo';
 import { NigerianLanguage, Region, StationGenre } from '../types/radio';
+import { useRadioPlayer } from '../context/PlayerContext';
 
 interface CategoryBrowserProps {
   onSelectRegion: (region: Region) => void;
+  onSelectState: (state: string) => void;
   onSelectGenre: (genre: StationGenre) => void;
   onSelectLanguage: (lang: NigerianLanguage) => void;
   activeRegion: Region | 'all';
+  activeState: string | 'all';
   activeGenre: StationGenre | 'all';
   activeLanguage: NigerianLanguage | 'all';
 }
 
 export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
   onSelectRegion,
+  onSelectState,
   onSelectGenre,
   onSelectLanguage,
   activeRegion,
+  activeState,
   activeGenre,
   activeLanguage,
 }) => {
+  const { stations } = useRadioPlayer();
+  const [stateSearch, setStateSearch] = useState('');
+  const [showAllStates, setShowAllStates] = useState(false);
+
   const regionDescriptions: Record<Region, string> = {
     'South West': 'Lagos, Ibadan, Ogun, Osun, Ondo, Ekiti',
-    'South South': 'Port Harcourt, Warri, Benin, Calabar, Uyo',
+    'South South': 'Port Harcourt, Warri, Benin, Calabar, Uyo, Yenagoa',
     'South East': 'Enugu, Onitsha, Owerri, Aba, Abakaliki',
-    'North Central': 'Abuja FCT, Jos, Ilorin, Makurdi, Minna',
-    'North West': 'Kano, Kaduna, Katsina, Sokoto, Zaria',
-    'North East': 'Maiduguri, Bauchi, Gombe, Yola, Jalingo',
+    'North Central': 'Abuja FCT, Jos, Ilorin, Makurdi, Minna, Lafia, Lokoja',
+    'North West': 'Kano, Kaduna, Katsina, Sokoto, Birnin Kebbi, Gusau, Dutse',
+    'North East': 'Maiduguri, Bauchi, Gombe, Yola, Jalingo, Damaturu',
     'National / Online': 'Nationwide networks & digital stations',
   };
 
@@ -42,16 +51,121 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
     'Islamic & Talk': Compass,
   };
 
+  // Compute station counts per state
+  const stateStationCounts = React.useMemo(() => {
+    const counts: Record<string, number> = {};
+    stations.forEach(s => {
+      counts[s.state] = (counts[s.state] || 0) + 1;
+    });
+    return counts;
+  }, [stations]);
+
+  // Filtered states by quick search
+  const filteredStates = React.useMemo(() => {
+    return NIGERIAN_STATES.filter(s => 
+      s.name.toLowerCase().includes(stateSearch.toLowerCase().trim()) ||
+      s.region.toLowerCase().includes(stateSearch.toLowerCase().trim()) ||
+      s.capital.toLowerCase().includes(stateSearch.toLowerCase().trim())
+    );
+  }, [stateSearch]);
+
+  const displayedStates = showAllStates || stateSearch.trim() ? filteredStates : filteredStates.slice(0, 12);
+
   return (
-    <div className="mb-10 space-y-6">
+    <div className="mb-12 space-y-8">
       
-      {/* 1. Explore by Geopolitical Region */}
+      {/* 1. All 36 States + FCT Complete Directory */}
+      <div className="bg-gradient-to-br from-[#062416] via-[#041a10] to-[#02130a] rounded-3xl p-5 sm:p-7 border border-emerald-800/70 shadow-xl">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-400 text-emerald-950 uppercase tracking-wider">
+                Full Coverage 🇳🇬
+              </span>
+              <span className="text-xs text-emerald-400 font-bold">36 States + Abuja (FCT)</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2 font-['Cabinet_Grotesk',sans-serif] mt-1">
+              <MapPin className="w-5 h-5 text-amber-400" />
+              <span>Browse by State</span>
+            </h3>
+            <p className="text-xs text-emerald-300/80">
+              Every Nigerian state is represented with live radio stations and FM frequencies
+            </p>
+          </div>
+
+          {/* Quick Search input for states */}
+          <div className="relative min-w-[200px] sm:min-w-[240px]">
+            <Search className="w-3.5 h-3.5 text-emerald-400 absolute left-3 top-3 pointer-events-none" />
+            <input
+              type="text"
+              value={stateSearch}
+              onChange={(e) => setStateSearch(e.target.value)}
+              placeholder="Filter state (e.g. Borno, Rivers, Kano)..."
+              className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#092e1d] border border-emerald-700/60 text-xs text-white placeholder-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-amber-400"
+            />
+          </div>
+        </div>
+
+        {/* States Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+          {displayedStates.map((st) => {
+            const count = stateStationCounts[st.name] || 0;
+            const isSelected = activeState === st.name;
+            return (
+              <button
+                key={st.name}
+                onClick={() => onSelectState(st.name)}
+                className={`p-3 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between group ${
+                  isSelected
+                    ? 'bg-amber-400 text-emerald-950 border-amber-300 font-bold shadow-lg scale-102'
+                    : 'bg-[#082b1b] text-emerald-100 border-emerald-800/50 hover:border-emerald-500 hover:bg-[#0c3924]'
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-1 mb-1">
+                    <span className={`text-[10px] font-bold uppercase tracking-wider truncate ${isSelected ? 'text-emerald-900' : 'text-emerald-400/70'}`}>
+                      {st.region.replace('South', 'S.').replace('North', 'N.')}
+                    </span>
+                    <span className={`px-1.5 py-0.2 rounded text-[10px] font-mono font-bold ${
+                      isSelected ? 'bg-emerald-950 text-amber-300' : 'bg-emerald-950/80 text-emerald-300 border border-emerald-800/60'
+                    }`}>
+                      {count} {count === 1 ? 'stn' : 'stns'}
+                    </span>
+                  </div>
+                  <div className="text-xs sm:text-sm font-black truncate group-hover:text-amber-300 transition-colors">
+                    {st.name}
+                  </div>
+                </div>
+                <div className={`text-[10px] mt-1.5 flex items-center justify-between ${isSelected ? 'text-emerald-900' : 'text-emerald-300/60'}`}>
+                  <span>Cap: {st.capital}</span>
+                  <ChevronRight className="w-3 h-3 opacity-60 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Show More / Show All States Toggle */}
+        {!stateSearch && (
+          <div className="mt-4 pt-3 border-t border-emerald-800/50 flex justify-center">
+            <button
+              onClick={() => setShowAllStates(!showAllStates)}
+              className="px-5 py-2 rounded-xl bg-emerald-800/70 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+            >
+              <span>{showAllStates ? 'Show Fewer States' : `Show All 36 States + FCT (${NIGERIAN_STATES.length})`}</span>
+              <ChevronRight className={`w-3.5 h-3.5 transition-transform ${showAllStates ? '-rotate-90' : 'rotate-90'}`} />
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* 2. Explore by Geopolitical Region */}
       <div>
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 font-['Cabinet_Grotesk',sans-serif]">
               <Globe className="w-5 h-5 text-amber-400" />
-              <span>Browse by Nigerian Region</span>
+              <span>Browse by Nigerian Geopolitical Zone</span>
             </h3>
             <p className="text-xs text-emerald-300/70">
               Discover radio stations broadcasting from Nigeria's 6 geopolitical zones
@@ -89,11 +203,11 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
         </div>
       </div>
 
-      {/* 2. Explore by Language */}
+      {/* 3. Explore by Language */}
       <div>
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 font-['Cabinet_Grotesk',sans-serif]">
               <MessageSquare className="w-4 h-4 text-amber-400" />
               <span>Broadcast Languages</span>
             </h3>
@@ -112,6 +226,11 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
               Yoruba: 'Omoluabi culture, Fuji, news & drama',
               Hausa: 'Muryar Arewa, labaru & al’ada',
               Igbo: 'Okwu Igbo, highlife & market gist',
+              Fulfulde: 'Habbirde Fulbe, labari & al’ada',
+              Kanuri: 'Borno & Sahel cultural heritage',
+              Nupe: 'Etsu Bida kingdom news & arts',
+              Igala: 'Confluence tradition & local news',
+              Ebira: 'Okene & Confluence community radio',
               Multilingual: 'Unity broadcasts across tongues',
             };
 
@@ -135,11 +254,11 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
         </div>
       </div>
 
-      {/* 3. Explore by Genre */}
+      {/* 4. Explore by Genre */}
       <div>
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 font-['Cabinet_Grotesk',sans-serif]">
               <Music className="w-4 h-4 text-amber-400" />
               <span>Popular Station Genres</span>
             </h3>

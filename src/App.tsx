@@ -223,9 +223,11 @@ const MainContent: React.FC = () => {
             {/* Visual Category & Region Browser */}
             <CategoryBrowser
               onSelectRegion={handleSelectRegion}
+              onSelectState={handleSelectState}
               onSelectGenre={handleSelectGenre}
               onSelectLanguage={handleSelectLanguage}
               activeRegion={filters.region}
+              activeState={filters.state}
               activeGenre={filters.genre}
               activeLanguage={filters.language}
             />
