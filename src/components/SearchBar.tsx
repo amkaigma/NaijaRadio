@@ -21,6 +21,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     { label: 'Lagos', icon: MapPin },
     { label: 'Abuja', icon: MapPin },
     { label: 'Kano', icon: MapPin },
+    { label: 'Adamawa', icon: MapPin },
     { label: 'Afrobeats', icon: Sparkles },
     { label: 'Pidgin', icon: Sparkles },
     { label: 'Hausa', icon: Sparkles },

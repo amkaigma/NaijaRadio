@@ -20,6 +20,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectState, onSelectG
     { name: 'Enugu', count: stations.filter(s => s.state === 'Enugu').length },
     { name: 'Kaduna', count: stations.filter(s => s.state === 'Kaduna').length },
     { name: 'Delta', count: stations.filter(s => s.state === 'Delta').length },
+    { name: 'Adamawa', count: stations.filter(s => s.state === 'Adamawa').length },
     { name: 'Borno', count: stations.filter(s => s.state === 'Borno').length },
     { name: 'Plateau', count: stations.filter(s => s.state === 'Plateau').length },
     { name: 'Akwa Ibom', count: stations.filter(s => s.state === 'Akwa Ibom').length },

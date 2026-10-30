@@ -62,7 +62,7 @@ export const NIGERIAN_STATES: StateInfo[] = [
   { name: 'Borno', region: 'North East', capital: 'Maiduguri', majorCities: ['Maiduguri', 'Biu'] },
   { name: 'Bauchi', region: 'North East', capital: 'Bauchi', majorCities: ['Bauchi', 'Azare', 'Misau'] },
   { name: 'Gombe', region: 'North East', capital: 'Gombe', majorCities: ['Gombe', 'Kaltungo'] },
-  { name: 'Adamawa', region: 'North East', capital: 'Yola', majorCities: ['Yola', 'Mubi', 'Jimeta'] },
+  { name: 'Adamawa', region: 'North East', capital: 'Yola', majorCities: ['Yola', 'Mubi', 'Jimeta', 'Gella', 'Hong'] },
   { name: 'Taraba', region: 'North East', capital: 'Jalingo', majorCities: ['Jalingo', 'Wukari'] },
   { name: 'Yobe', region: 'North East', capital: 'Damaturu', majorCities: ['Damaturu', 'Potiskum', 'Gashua'] },
 ];
