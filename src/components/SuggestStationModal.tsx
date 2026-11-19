@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import Hls from 'hls.js';
 import { X, Send, Radio, MapPin, Globe, Sparkles, CheckCircle2, Volume2, AlertCircle } from 'lucide-react';
 import { ALL_GENRES, ALL_LANGUAGES, NIGERIAN_STATES } from '../data/nigeriaGeo';
 import { NigerianLanguage, Region, StationGenre } from '../types/radio';
@@ -22,7 +23,9 @@ export const SuggestStationModal: React.FC = () => {
   // Test stream state
   const [isTestingStream, setIsTestingStream] = useState(false);
   const [testStatus, setTestStatus] = useState<'idle' | 'success' | 'failed'>('idle');
+  const [validationError, setValidationError] = useState<string | null>(null);
   const [testAudio] = useState(() => new Audio());
+  const testHlsRef = useRef<Hls | null>(null);
 
   // Form submission state
   const [isSuccess, setIsSuccess] = useState(false);
@@ -49,39 +52,67 @@ export const SuggestStationModal: React.FC = () => {
     );
   };
 
+  const stopTestAudio = () => {
+    if (testHlsRef.current) {
+      testHlsRef.current.destroy();
+      testHlsRef.current = null;
+    }
+    testAudio.pause();
+    testAudio.removeAttribute('src');
+    testAudio.load();
+  };
+
   const handleTestAudio = () => {
-    if (!streamUrl.trim()) {
+    const trimmed = streamUrl.trim();
+    if (!trimmed) {
       setTestStatus('failed');
       return;
     }
 
+    stopTestAudio();
     setIsTestingStream(true);
     setTestStatus('idle');
 
-    testAudio.src = streamUrl.trim();
-    testAudio.load();
-    testAudio.play()
-      .then(() => {
-        setIsTestingStream(false);
-        setTestStatus('success');
-        // Stop test after 4 seconds
-        setTimeout(() => {
-          testAudio.pause();
-          testAudio.src = '';
-        }, 4000);
-      })
-      .catch(() => {
-        setIsTestingStream(false);
-        setTestStatus('failed');
+    const finishSuccess = () => {
+      setIsTestingStream(false);
+      setTestStatus('success');
+      setTimeout(() => {
+        stopTestAudio();
+      }, 4000);
+    };
+
+    const finishFail = () => {
+      stopTestAudio();
+      setIsTestingStream(false);
+      setTestStatus('failed');
+    };
+
+    if (/\.m3u8(\?.*)?$/i.test(trimmed) && Hls.isSupported()) {
+      const hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+      testHlsRef.current = hls;
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        testAudio.play().then(finishSuccess).catch(finishFail);
       });
+      hls.on(Hls.Events.ERROR, (_evt, data) => {
+        if (data.fatal) finishFail();
+      });
+      hls.loadSource(trimmed);
+      hls.attachMedia(testAudio);
+      return;
+    }
+
+    testAudio.src = trimmed;
+    testAudio.load();
+    testAudio.play().then(finishSuccess).catch(finishFail);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !frequency.trim()) {
-      alert('Please fill in Station Name and Frequency!');
+      setValidationError('Please fill in Station Name and Frequency!');
       return;
     }
+    setValidationError(null);
 
     const region: Region = currentStateObj.region;
 
@@ -129,8 +160,8 @@ export const SuggestStationModal: React.FC = () => {
   };
 
   const handleClose = () => {
-    testAudio.pause();
-    testAudio.src = '';
+    stopTestAudio();
+    setValidationError(null);
     setIsSuccess(false);
     closeSuggestModal();
   };
@@ -407,6 +438,13 @@ export const SuggestStationModal: React.FC = () => {
                   </div>
                 </div>
               </div>
+
+              {validationError && (
+                <div className="p-3 rounded-xl bg-rose-950/70 border border-rose-700/60 text-rose-200 text-xs font-semibold flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                  <span>{validationError}</span>
+                </div>
+              )}
 
               {/* Submit Buttons */}
               <div className="pt-3 border-t border-emerald-800/60 flex items-center justify-end gap-3">

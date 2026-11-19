@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
               <li>Abuja FCT Stations (99.5, 95.1)</li>
               <li>Kano & Northern Streams (Freedom, BBC Hausa)</li>
               <li>Ibadan Cultural Broadcasts (Splash, Fresh)</li>
-              <li>Eastern Highlife & Talk (Dream FM, Sapientia)</li>
+              <li>Eastern Highlife & Talk (Urban Radio, FLO FM, Sapientia)</li>
             </ul>
           </div>
 

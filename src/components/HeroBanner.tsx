@@ -60,7 +60,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectState, onSelectG
         <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 max-w-md">
           <div className="bg-[#051f13]/80 p-3 rounded-2xl border border-emerald-800/60">
             <div className="text-xl sm:text-2xl font-black text-amber-400 font-mono">
-              {liveCount}+
+              {liveCount}
             </div>
             <div className="text-[11px] sm:text-xs text-emerald-300/80 font-medium">
               Live Streams

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Pause, Heart, Radio, MapPin, Volume2, Info, Share2, AlertCircle } from 'lucide-react';
+import { Play, Pause, Heart, Radio, MapPin, Volume2, Info, Share2, AlertCircle, Check } from 'lucide-react';
 import { Station } from '../types/radio';
 import { useRadioPlayer } from '../context/PlayerContext';
 
@@ -19,6 +19,8 @@ export const StationCard: React.FC<StationCardProps> = ({ station, featured = fa
     toggleFavorite,
     openStationDetail,
   } = useRadioPlayer();
+
+  const [copied, setCopied] = React.useState(false);
 
   const isCurrent = currentStation?.id === station.id;
   const isThisPlaying = isCurrent && isPlaying;
@@ -59,9 +61,14 @@ export const StationCard: React.FC<StationCardProps> = ({ station, featured = fa
       } catch {
         // Share cancelled or unavailable
       }
-    } else {
-      await navigator.clipboard.writeText(`${shareText} ${window.location.href}`);
-      alert(`Copied link to ${station.name}!`);
+    } else if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(`${shareText} ${window.location.href}`);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        // Clipboard unavailable
+      }
     }
   };
 
@@ -107,9 +114,9 @@ export const StationCard: React.FC<StationCardProps> = ({ station, featured = fa
             <button
               onClick={handleShare}
               className="p-1.5 rounded-full text-emerald-300/50 hover:text-white hover:bg-emerald-800/40 transition-colors"
-              title="Share station"
+              title={copied ? 'Link copied!' : 'Share station'}
             >
-              <Share2 className="w-3.5 h-3.5" />
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
             </button>
             <button
               onClick={handleFavoriteClick}

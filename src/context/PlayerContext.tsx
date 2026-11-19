@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
+import Hls from 'hls.js';
 import { Station } from '../types/radio';
 import { INITIAL_STATIONS } from '../data/stations';
 
@@ -42,28 +43,8 @@ const STORAGE_RECENT_KEY = 'naija_radio_recent_v1';
 const STORAGE_USER_STATIONS_KEY = 'naija_radio_community_stations_v1';
 const STORAGE_VOLUME_KEY = 'naija_radio_volume_v1';
 
-// High-reliability master fallback streams guaranteed 200 OK across browsers
-export const getMasterFallbackStream = (station: Station): string => {
-  if (station.languages?.includes('Hausa') || station.region === 'North West' || station.region === 'North East') {
-    return 'https://stream.live.vc.bbcmedia.co.uk/bbc_hausa_radio';
-  }
-  if (station.genre === 'Sports Radio') {
-    return 'https://eagle7fm-atunwadigital.streamguys1.com/eagle7fm';
-  }
-  if (station.genre === 'Gospel & Christian') {
-    return 'https://streaming.radio.co/s7dc18f0ad/listen';
-  }
-  if (station.languages?.includes('Yoruba') || ['Oyo', 'Osun', 'Ogun', 'Ondo', 'Ekiti'].includes(station.state)) {
-    return 'https://agidigbostream.com.ng/radio/8000/radio.mp3';
-  }
-  if (station.region === 'South East' || station.languages?.includes('Igbo')) {
-    return 'https://a8.asurahosting.com:9080/radio.mp3';
-  }
-  if (station.region === 'South South') {
-    return 'https://fm.imediaport.com/pitakwa';
-  }
-  // Default high-availability Afrobeats/Talk station
-  return 'https://coolfmlagos969-atunwadigital.streamguys1.com/coolfmlagos969';
+const isHlsUrl = (url: string): boolean => {
+  return /\.m3u8(\?.*)?$/i.test(url) || url.toLowerCase().includes('/playlist.m3u8');
 };
 
 export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -85,9 +66,10 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
 
-  // Fallback stages: 0 = primary, 1 = backup, 2 = master regional relay
+  // Stage 0 = station's primary verified streamUrl, Stage 1 = same station's alternate official backupStreamUrl
   const fallbackStageRef = useRef<number>(0);
   const activeStationRef = useRef<Station | null>(null);
+  const playbackTokenRef = useRef<number>(0);
 
   const [volume, setVolumeState] = useState<number>(() => {
     try {
@@ -97,6 +79,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return 0.85;
     }
   });
+  const initialVolumeRef = useRef<number>(volume);
 
   const [favorites, setFavorites] = useState<string[]>(() => {
     try {
@@ -125,66 +108,144 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [sleepTimerRemainingSec, setSleepTimerRemainingSec] = useState<number | null>(null);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const hlsRef = useRef<Hls | null>(null);
   const timerIntervalRef = useRef<number | null>(null);
+  const noticeTimerRef = useRef<number | null>(null);
 
-  // Attempt stream with automatic failover
+  const cleanupHls = useCallback(() => {
+    if (hlsRef.current) {
+      hlsRef.current.destroy();
+      hlsRef.current = null;
+    }
+  }, []);
+
+  const clearNoticeLater = useCallback(() => {
+    if (noticeTimerRef.current) {
+      window.clearTimeout(noticeTimerRef.current);
+    }
+    noticeTimerRef.current = window.setTimeout(() => setNotice(null), 4000);
+  }, []);
+
+  // Attempt stream playback strictly using THIS station's own authentic stream(s)
   const attemptStreamPlayback = useCallback((station: Station, stage: number) => {
-    if (!audioRef.current) return;
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const token = ++playbackTokenRef.current;
     fallbackStageRef.current = stage;
     activeStationRef.current = station;
     setIsBuffering(true);
     setError(null);
 
-    let targetUrl = station.streamUrl;
-    if (stage === 1 && station.backupStreamUrl) {
+    let targetUrl: string | null = null;
+    if (stage === 0) {
+      targetUrl = station.streamUrl;
+    } else if (stage === 1 && station.backupStreamUrl && station.backupStreamUrl !== station.streamUrl) {
       targetUrl = station.backupStreamUrl;
-      setNotice(`Switching to backup broadcast for ${station.name}...`);
-    } else if (stage >= 2 || !targetUrl) {
-      targetUrl = getMasterFallbackStream(station);
-      setNotice(`Connected via verified live broadcast feed (${station.region}).`);
+      setNotice(`Switching to alternate official stream for ${station.name}...`);
     }
+
+    cleanupHls();
+    audio.pause();
+    audio.removeAttribute('src');
+    audio.load();
 
     if (!targetUrl) {
-      targetUrl = 'https://coolfmlagos969-atunwadigital.streamguys1.com/coolfmlagos969';
+      setIsBuffering(false);
+      setIsPlaying(false);
+      setNotice(null);
+      setError(`${station.name} live stream is currently offline or unavailable.`);
+      return;
     }
 
-    audioRef.current.pause();
-    audioRef.current.src = targetUrl;
-    audioRef.current.load();
+    const handleStageFailure = (err?: unknown) => {
+      if (playbackTokenRef.current !== token) return;
+      console.warn(`Playback stage ${stage} failed for ${station.name}:`, err);
 
-    const playPromise = audioRef.current.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          setIsPlaying(true);
-          setIsBuffering(false);
-          setError(null);
-          // Auto clear notice after 5 seconds
-          setTimeout(() => setNotice(null), 5000);
-        })
-        .catch((err) => {
-          console.warn(`Playback stage ${stage} failed:`, err);
-          if (stage === 0 && station.backupStreamUrl) {
-            attemptStreamPlayback(station, 1);
-          } else if (stage < 2) {
-            attemptStreamPlayback(station, 2);
-          } else {
+      if (stage === 0 && station.backupStreamUrl && station.backupStreamUrl !== station.streamUrl) {
+        attemptStreamPlayback(station, 1);
+      } else {
+        cleanupHls();
+        setIsBuffering(false);
+        setIsPlaying(false);
+        setNotice(null);
+        setError(`Unable to reach ${station.name}'s live broadcast right now. The station may be temporarily off air.`);
+      }
+    };
+
+    const startAudioPlay = () => {
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            if (playbackTokenRef.current !== token) return;
+            setIsPlaying(true);
             setIsBuffering(false);
-            setIsPlaying(false);
-            setError(`Unable to establish live connection for ${station.name}. Tap Retry.`);
-          }
-        });
-    }
-  }, []);
+            setError(null);
+            clearNoticeLater();
+          })
+          .catch((err) => {
+            // AbortError occurs naturally when user switches stations mid-load
+            if (err?.name === 'AbortError' && playbackTokenRef.current !== token) return;
+            handleStageFailure(err);
+          });
+      }
+    };
 
-  // Initialize Audio element
+    if (isHlsUrl(targetUrl)) {
+      if (Hls.isSupported()) {
+        const hls = new Hls({
+          enableWorker: true,
+          lowLatencyMode: true,
+        });
+        hlsRef.current = hls;
+        let recoveredNetworkError = false;
+
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          if (playbackTokenRef.current !== token) return;
+          startAudioPlay();
+        });
+
+        hls.on(Hls.Events.ERROR, (_event, data) => {
+          if (playbackTokenRef.current !== token) return;
+          if (!data.fatal) return;
+
+          if (data.type === Hls.ErrorTypes.NETWORK_ERROR && !recoveredNetworkError) {
+            recoveredNetworkError = true;
+            hls.startLoad();
+            return;
+          }
+          handleStageFailure(data);
+        });
+
+        hls.loadSource(targetUrl);
+        hls.attachMedia(audio);
+      } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+        // Native HLS support (Safari / iOS)
+        audio.src = targetUrl;
+        audio.load();
+        startAudioPlay();
+      } else {
+        handleStageFailure(new Error('HLS playback is not supported in this browser'));
+      }
+      return;
+    }
+
+    audio.src = targetUrl;
+    audio.load();
+    startAudioPlay();
+  }, [cleanupHls, clearNoticeLater]);
+
+  // Initialize Audio element once
   useEffect(() => {
     const audio = new Audio();
     audio.preload = 'none';
-    audio.volume = volume;
+    audio.volume = initialVolumeRef.current;
     audioRef.current = audio;
 
-    const handleWaiting = () => setIsBuffering(true);
+    const handleWaiting = () => {
+      if (activeStationRef.current) setIsBuffering(true);
+    };
     const handlePlaying = () => {
       setIsBuffering(false);
       setIsPlaying(true);
@@ -194,23 +255,25 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const handlePause = () => setIsPlaying(false);
 
     const handleError = () => {
-      console.warn('Audio tag error event triggered');
+      // Ignore errors triggered by intentionally clearing src
+      if (!audio.getAttribute('src') && !hlsRef.current) return;
+
       const station = activeStationRef.current;
       const currentStage = fallbackStageRef.current;
-
-      if (station) {
-        if (currentStage === 0 && station.backupStreamUrl) {
-          attemptStreamPlayback(station, 1);
-        } else if (currentStage < 2) {
-          attemptStreamPlayback(station, 2);
-        } else {
-          setIsBuffering(false);
-          setIsPlaying(false);
-          setError(`Station broadcast temporarily unreachable. Tap Retry.`);
-        }
-      } else {
+      if (!station) {
         setIsBuffering(false);
         setIsPlaying(false);
+        return;
+      }
+
+      if (currentStage === 0 && station.backupStreamUrl && station.backupStreamUrl !== station.streamUrl) {
+        attemptStreamPlayback(station, 1);
+      } else {
+        cleanupHls();
+        setIsBuffering(false);
+        setIsPlaying(false);
+        setNotice(null);
+        setError(`${station.name} stream is currently unreachable. Tap Retry to try again.`);
       }
     };
 
@@ -221,15 +284,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     audio.addEventListener('error', handleError);
 
     return () => {
+      playbackTokenRef.current += 1;
+      cleanupHls();
+      if (noticeTimerRef.current) window.clearTimeout(noticeTimerRef.current);
       audio.pause();
-      audio.src = '';
+      audio.removeAttribute('src');
+      audio.load();
       audio.removeEventListener('waiting', handleWaiting);
       audio.removeEventListener('playing', handlePlaying);
       audio.removeEventListener('canplay', handleCanPlay);
       audio.removeEventListener('pause', handlePause);
       audio.removeEventListener('error', handleError);
     };
-  }, [attemptStreamPlayback, volume]);
+  }, [attemptStreamPlayback, cleanupHls]);
 
   // Sleep Timer countdown
   useEffect(() => {
@@ -284,6 +351,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setCurrentStation(station);
     activeStationRef.current = station;
 
+    if (!station.streamUrl) {
+      cleanupHls();
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.removeAttribute('src');
+        audioRef.current.load();
+      }
+      setIsPlaying(false);
+      setIsBuffering(false);
+      setError(`${station.name} stream is currently offline.`);
+      return;
+    }
+
     // Start from primary stage (0)
     attemptStreamPlayback(station, 0);
 
@@ -313,14 +393,16 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         audioRef.current?.pause();
       });
       navigator.mediaSession.setActionHandler('stop', () => {
+        cleanupHls();
         if (audioRef.current) {
           audioRef.current.pause();
-          audioRef.current.src = '';
+          audioRef.current.removeAttribute('src');
+          audioRef.current.load();
         }
         setIsPlaying(false);
       });
     }
-  }, [attemptStreamPlayback]);
+  }, [attemptStreamPlayback, cleanupHls]);
 
   const togglePlayPause = () => {
     if (!currentStation) return;
@@ -332,8 +414,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     } else {
       setIsBuffering(true);
       setError(null);
-      if (!audioRef.current.src || audioRef.current.src === window.location.href) {
-        attemptStreamPlayback(currentStation, fallbackStageRef.current);
+      const hasActiveSource = Boolean(audioRef.current.getAttribute('src')) || Boolean(hlsRef.current);
+      if (!hasActiveSource) {
+        attemptStreamPlayback(currentStation, 0);
       } else {
         audioRef.current
           .play()
@@ -342,19 +425,24 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             setIsBuffering(false);
           })
           .catch(() => {
-            attemptStreamPlayback(currentStation, fallbackStageRef.current + 1);
+            attemptStreamPlayback(currentStation, 0);
           });
       }
     }
   };
 
   const stopPlayback = () => {
+    playbackTokenRef.current += 1;
+    cleanupHls();
     if (audioRef.current) {
       audioRef.current.pause();
-      audioRef.current.src = '';
+      audioRef.current.removeAttribute('src');
+      audioRef.current.load();
     }
     setIsPlaying(false);
     setIsBuffering(false);
+    setError(null);
+    setNotice(null);
   };
 
   const retryPlayback = () => {

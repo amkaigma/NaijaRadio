@@ -13,7 +13,8 @@ import {
   User, 
   ExternalLink,
   ShieldCheck,
-  AlertCircle
+  AlertCircle,
+  Check
 } from 'lucide-react';
 import { useRadioPlayer } from '../context/PlayerContext';
 
@@ -30,6 +31,8 @@ export const StationDetailModal: React.FC = () => {
     isFavorite,
     toggleFavorite,
   } = useRadioPlayer();
+
+  const [copied, setCopied] = React.useState(false);
 
   if (!isDetailOpen || !selectedStationForDetail) return null;
 
@@ -61,9 +64,14 @@ export const StationDetailModal: React.FC = () => {
       } catch {
         // share dismissed
       }
-    } else {
-      await navigator.clipboard.writeText(`${text} ${window.location.href}`);
-      alert(`Link to ${station.name} copied to clipboard!`);
+    } else if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(`${text} ${window.location.href}`);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        // Clipboard unavailable
+      }
     }
   };
 
@@ -213,9 +221,9 @@ export const StationDetailModal: React.FC = () => {
           <button
             onClick={handleShare}
             className="p-3.5 rounded-2xl bg-[#0a2c1b] text-emerald-300 border border-emerald-800/80 hover:text-white hover:bg-emerald-800/40 transition-all active:scale-95"
-            title="Share station"
+            title={copied ? 'Link copied!' : 'Share station'}
           >
-            <Share2 className="w-5 h-5" />
+            {copied ? <Check className="w-5 h-5 text-emerald-400" /> : <Share2 className="w-5 h-5" />}
           </button>
         </div>
 
