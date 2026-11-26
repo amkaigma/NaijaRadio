@@ -69,45 +69,40 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
     );
   }, [stateSearch]);
 
-  const displayedStates = showAllStates || stateSearch.trim() ? filteredStates : filteredStates.slice(0, 12);
+  const displayedStates = showAllStates || stateSearch.trim() ? filteredStates : filteredStates.slice(0, 9);
 
   return (
-    <div className="mb-12 space-y-8">
+    <div className="mb-6 sm:mb-10 space-y-5 sm:space-y-7">
       
       {/* 1. All 36 States + FCT Complete Directory */}
-      <div className="bg-gradient-to-br from-[#062416] via-[#041a10] to-[#02130a] rounded-3xl p-5 sm:p-7 border border-emerald-800/70 shadow-xl">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+      <div className="bg-gradient-to-br from-[#062416] via-[#041a10] to-[#02130a] rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 border border-emerald-800/70 shadow-xl">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-400 text-emerald-950 uppercase tracking-wider">
-                Full Coverage 🇳🇬
-              </span>
-              <span className="text-xs text-emerald-400 font-bold">36 States + Abuja (FCT)</span>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2 font-['Cabinet_Grotesk',sans-serif] mt-1">
-              <MapPin className="w-5 h-5 text-amber-400" />
+            <h3 className="text-base sm:text-xl font-black text-white flex items-center gap-1.5 font-['Cabinet_Grotesk',sans-serif]">
+              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
               <span>Browse by State</span>
+              <span className="text-[11px] text-emerald-400 font-semibold ml-1">36 + FCT</span>
             </h3>
-            <p className="text-xs text-emerald-300/80">
+            <p className="hidden sm:block text-xs text-emerald-300/80 mt-0.5">
               Every Nigerian state is represented with live radio stations and FM frequencies
             </p>
           </div>
 
           {/* Quick Search input for states */}
-          <div className="relative min-w-[200px] sm:min-w-[240px]">
-            <Search className="w-3.5 h-3.5 text-emerald-400 absolute left-3 top-3 pointer-events-none" />
+          <div className="relative sm:min-w-[230px]">
+            <Search className="w-3.5 h-3.5 text-emerald-400 absolute left-3 top-2.5 pointer-events-none" />
             <input
               type="text"
               value={stateSearch}
               onChange={(e) => setStateSearch(e.target.value)}
-              placeholder="Filter state (e.g. Borno, Rivers, Kano)..."
-              className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#092e1d] border border-emerald-700/60 text-xs text-white placeholder-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-amber-400"
+              placeholder="Filter state (e.g. Borno, Kano)..."
+              className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-[#092e1d] border border-emerald-700/60 text-xs text-white placeholder-emerald-400/50 focus:outline-none focus:ring-1 focus:ring-amber-400"
             />
           </div>
         </div>
 
-        {/* States Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+        {/* States Grid (3 compact columns on mobile, up to 6 on desktop) */}
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1.5 sm:gap-2">
           {displayedStates.map((st) => {
             const count = stateStationCounts[st.name] || 0;
             const isSelected = activeState === st.name;
@@ -115,30 +110,25 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
               <button
                 key={st.name}
                 onClick={() => onSelectState(st.name)}
-                className={`p-3 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between group ${
+                className={`p-2 sm:p-2.5 rounded-xl text-left border transition-all cursor-pointer flex flex-col justify-between group ${
                   isSelected
-                    ? 'bg-amber-400 text-emerald-950 border-amber-300 font-bold shadow-lg scale-102'
+                    ? 'bg-amber-400 text-emerald-950 border-amber-300 font-bold shadow-md'
                     : 'bg-[#082b1b] text-emerald-100 border-emerald-800/50 hover:border-emerald-500 hover:bg-[#0c3924]'
                 }`}
               >
-                <div>
-                  <div className="flex items-center justify-between gap-1 mb-1">
-                    <span className={`text-[10px] font-bold uppercase tracking-wider truncate ${isSelected ? 'text-emerald-900' : 'text-emerald-400/70'}`}>
-                      {st.region.replace('South', 'S.').replace('North', 'N.')}
-                    </span>
-                    <span className={`px-1.5 py-0.2 rounded text-[10px] font-mono font-bold ${
-                      isSelected ? 'bg-emerald-950 text-amber-300' : 'bg-emerald-950/80 text-emerald-300 border border-emerald-800/60'
-                    }`}>
-                      {count} {count === 1 ? 'stn' : 'stns'}
-                    </span>
-                  </div>
-                  <div className="text-xs sm:text-sm font-black truncate group-hover:text-amber-300 transition-colors">
+                <div className="flex items-center justify-between gap-1">
+                  <span className={`text-[11px] sm:text-xs font-bold truncate ${isSelected ? 'text-emerald-950' : 'text-white group-hover:text-amber-300'}`}>
                     {st.name}
-                  </div>
+                  </span>
+                  <span className={`text-[10px] font-mono font-bold tabular-nums shrink-0 ${
+                    isSelected ? 'text-emerald-900' : 'text-amber-400/90'
+                  }`}>
+                    {count}
+                  </span>
                 </div>
-                <div className={`text-[10px] mt-1.5 flex items-center justify-between ${isSelected ? 'text-emerald-900' : 'text-emerald-300/60'}`}>
-                  <span>Cap: {st.capital}</span>
-                  <ChevronRight className="w-3 h-3 opacity-60 group-hover:translate-x-0.5 transition-transform" />
+                <div className={`text-[10px] mt-0.5 flex items-center justify-between truncate ${isSelected ? 'text-emerald-900' : 'text-emerald-300/60'}`}>
+                  <span className="truncate">{st.capital}</span>
+                  <ChevronRight className="w-3 h-3 opacity-50 shrink-0 hidden sm:inline" />
                 </div>
               </button>
             );
@@ -147,12 +137,12 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
 
         {/* Show More / Show All States Toggle */}
         {!stateSearch && (
-          <div className="mt-4 pt-3 border-t border-emerald-800/50 flex justify-center">
+          <div className="mt-3 pt-2.5 border-t border-emerald-800/50 flex justify-center">
             <button
               onClick={() => setShowAllStates(!showAllStates)}
-              className="px-5 py-2 rounded-xl bg-emerald-800/70 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-4 py-1.5 rounded-xl bg-emerald-800/70 hover:bg-emerald-700 text-white font-bold text-[11px] sm:text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
             >
-              <span>{showAllStates ? 'Show Fewer States' : `Show All 36 States + FCT (${NIGERIAN_STATES.length})`}</span>
+              <span>{showAllStates ? 'Show Fewer States' : `All 36 States + FCT (${NIGERIAN_STATES.length})`}</span>
               <ChevronRight className={`w-3.5 h-3.5 transition-transform ${showAllStates ? '-rotate-90' : 'rotate-90'}`} />
             </button>
           </div>
@@ -161,40 +151,30 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
 
       {/* 2. Explore by Geopolitical Region */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 font-['Cabinet_Grotesk',sans-serif]">
-              <Globe className="w-5 h-5 text-amber-400" />
-              <span>Browse by Nigerian Geopolitical Zone</span>
-            </h3>
-            <p className="text-xs text-emerald-300/70">
-              Discover radio stations broadcasting from Nigeria's 6 geopolitical zones
-            </p>
-          </div>
+        <div className="mb-2 sm:mb-3">
+          <h3 className="text-sm sm:text-lg font-bold text-white flex items-center gap-1.5 font-['Cabinet_Grotesk',sans-serif]">
+            <Globe className="w-4 h-4 text-amber-400" />
+            <span>Geopolitical Zones</span>
+          </h3>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+        <div className="flex overflow-x-auto no-scrollbar gap-2 pb-1 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:gap-2.5 sm:overflow-visible">
           {NIGERIAN_REGIONS.map((region) => {
             const isSelected = activeRegion === region;
             return (
               <button
                 key={region}
                 onClick={() => onSelectRegion(region)}
-                className={`p-3.5 rounded-2xl text-left border transition-all duration-200 cursor-pointer flex flex-col justify-between ${
+                className={`shrink-0 min-w-[138px] sm:min-w-0 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl text-left border transition-colors cursor-pointer flex flex-col justify-between ${
                   isSelected
-                    ? 'bg-emerald-600 text-white border-emerald-400 ring-2 ring-emerald-500/40 shadow-lg scale-102'
+                    ? 'bg-emerald-600 text-white border-emerald-400 shadow-md'
                     : 'bg-[#062114] text-emerald-200 border-emerald-800/60 hover:border-emerald-600/70 hover:bg-[#092d1c]'
                 }`}
               >
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider block opacity-70 mb-1 text-amber-300">
-                    Zone
-                  </span>
-                  <div className="text-sm font-extrabold leading-snug">
-                    {region}
-                  </div>
+                <div className="text-xs sm:text-sm font-bold leading-snug whitespace-nowrap sm:whitespace-normal">
+                  {region}
                 </div>
-                <p className="text-[10px] mt-2 opacity-70 line-clamp-2">
+                <p className="text-[10px] mt-1 opacity-70 line-clamp-1 sm:line-clamp-2">
                   {regionDescriptions[region]}
                 </p>
               </button>
@@ -205,47 +185,42 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
 
       {/* 3. Explore by Language */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 font-['Cabinet_Grotesk',sans-serif]">
-              <MessageSquare className="w-4 h-4 text-amber-400" />
-              <span>Broadcast Languages</span>
-            </h3>
-            <p className="text-xs text-emerald-300/70">
-              Tune into your mother tongue or street lingua
-            </p>
-          </div>
+        <div className="mb-2 sm:mb-3">
+          <h3 className="text-sm sm:text-lg font-bold text-white flex items-center gap-1.5 font-['Cabinet_Grotesk',sans-serif]">
+            <MessageSquare className="w-4 h-4 text-amber-400" />
+            <span>Broadcast Languages</span>
+          </h3>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+        <div className="flex overflow-x-auto no-scrollbar gap-2 pb-1 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:gap-2.5 sm:overflow-visible">
           {ALL_LANGUAGES.map((lang) => {
             const isSelected = activeLanguage === lang;
             const descriptions: Record<NigerianLanguage, string> = {
-              Pidgin: 'Ogbonge street talk & comedy',
-              English: 'National news, contemporary & global',
-              Yoruba: 'Omoluabi culture, Fuji, news & drama',
-              Hausa: 'Muryar Arewa, labaru & al’ada',
-              Igbo: 'Okwu Igbo, highlife & market gist',
-              Fulfulde: 'Habbirde Fulbe, labari & al’ada',
-              Kanuri: 'Borno & Sahel cultural heritage',
-              Nupe: 'Etsu Bida kingdom news & arts',
-              Igala: 'Confluence tradition & local news',
-              Ebira: 'Okene & Confluence community radio',
-              Multilingual: 'Unity broadcasts across tongues',
+              Pidgin: 'Street talk & comedy',
+              English: 'News & contemporary',
+              Yoruba: 'Culture, Fuji & news',
+              Hausa: 'Muryar Arewa & news',
+              Igbo: 'Highlife & market gist',
+              Fulfulde: 'Fulbe heritage',
+              Kanuri: 'Borno & Sahel voice',
+              Nupe: 'Bida kingdom news',
+              Igala: 'Confluence tradition',
+              Ebira: 'Okene community',
+              Multilingual: 'Unity broadcasts',
             };
 
             return (
               <button
                 key={lang}
                 onClick={() => onSelectLanguage(lang)}
-                className={`p-3 rounded-2xl text-left border transition-all cursor-pointer ${
+                className={`shrink-0 min-w-[116px] sm:min-w-0 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl text-left border transition-colors cursor-pointer ${
                   isSelected
                     ? 'bg-amber-400 text-emerald-950 font-bold border-amber-300 shadow-md'
                     : 'bg-[#062114] text-emerald-200 border-emerald-800/60 hover:bg-[#092d1c]'
                 }`}
               >
-                <div className="text-sm font-black">{lang}</div>
-                <div className={`text-[10px] mt-0.5 line-clamp-1 ${isSelected ? 'text-emerald-900' : 'text-emerald-400/60'}`}>
+                <div className="text-xs sm:text-sm font-black whitespace-nowrap">{lang}</div>
+                <div className={`text-[10px] mt-0.5 truncate ${isSelected ? 'text-emerald-900' : 'text-emerald-400/60'}`}>
                   {descriptions[lang]}
                 </div>
               </button>
@@ -256,19 +231,14 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
 
       {/* 4. Explore by Genre */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 font-['Cabinet_Grotesk',sans-serif]">
-              <Music className="w-4 h-4 text-amber-400" />
-              <span>Popular Station Genres</span>
-            </h3>
-            <p className="text-xs text-emerald-300/70">
-              From continuous Afrobeats to in-depth news & football commentaries
-            </p>
-          </div>
+        <div className="mb-2 sm:mb-3">
+          <h3 className="text-sm sm:text-lg font-bold text-white flex items-center gap-1.5 font-['Cabinet_Grotesk',sans-serif]">
+            <Music className="w-4 h-4 text-amber-400" />
+            <span>Station Genres</span>
+          </h3>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+        <div className="flex overflow-x-auto no-scrollbar gap-2 pb-1 sm:grid sm:grid-cols-3 lg:grid-cols-4 sm:gap-2.5 sm:overflow-visible">
           {ALL_GENRES.slice(0, 8).map((genre) => {
             const Icon = genreIcons[genre] || Radio;
             const isSelected = activeGenre === genre;
@@ -276,16 +246,16 @@ export const CategoryBrowser: React.FC<CategoryBrowserProps> = ({
               <button
                 key={genre}
                 onClick={() => onSelectGenre(genre)}
-                className={`p-3 rounded-2xl flex items-center gap-2.5 border transition-all cursor-pointer ${
+                className={`shrink-0 sm:shrink px-3 py-2 sm:p-2.5 rounded-xl sm:rounded-2xl flex items-center gap-2 border transition-colors cursor-pointer ${
                   isSelected
                     ? 'bg-emerald-600 text-white border-emerald-400 shadow-md font-bold'
                     : 'bg-[#062114] text-emerald-200 border-emerald-800/60 hover:bg-[#092d1c]'
                 }`}
               >
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-white/20' : 'bg-emerald-900/60 text-amber-400'}`}>
-                  <Icon className="w-4 h-4" />
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${isSelected ? 'bg-white/20' : 'bg-emerald-900/60 text-amber-400'}`}>
+                  <Icon className="w-3.5 h-3.5" />
                 </div>
-                <div className="text-xs font-bold truncate">
+                <div className="text-xs font-bold whitespace-nowrap truncate">
                   {genre}
                 </div>
               </button>

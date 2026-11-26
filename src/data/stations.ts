@@ -22,7 +22,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Eziokwu Biri na Aba (Aba Midday Express)',
     hostName: 'Chidiebere Nwosu',
     listenersEstimate: 21500,
-    description: 'FLO 94.9 FM is Aba’s premier commercial radio station, broadcasting urban Afrobeats, business & market talk, and vibrant Igbo youth culture.'
+    description: 'FLO 94.9 FM is Aba’s premier commercial radio station, broadcasting urban Afrobeats, business & market talk, and vibrant Igbo youth culture.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 816ms, icy: "FLO FM").'
   },
   {
     id: 'bca-umuahia',
@@ -42,7 +46,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Umuahia Morning Dialogue',
     hostName: 'Mazi Okechukwu',
     listenersEstimate: 16800,
-    description: 'Broadcasting Corporation of Abia State (BCA) brings grassroots news, Igbo cultural programs, government policies, and traditional highlife.'
+    description: 'Broadcasting Corporation of Abia State (BCA) brings grassroots news, Igbo cultural programs, government policies, and traditional highlife.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'bourdex-fm-abiriba',
@@ -62,7 +71,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Abiriba Community & Commerce Hour',
     hostName: 'Mazi Uche Kalu',
     listenersEstimate: 14200,
-    description: 'Bourdex 97.9 FM broadcasts from Abiriba in Abia North, celebrating Igbo heritage, regional entrepreneurship, and local community affairs.'
+    description: 'Bourdex 97.9 FM broadcasts from Abiriba in Abia North, celebrating Igbo heritage, regional entrepreneurship, and local community affairs.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (2508 bytes, 228ms, icy: "BOURDEX 97.9FM ABIRIBA").'
   },
   {
     id: 'real-fm-aba',
@@ -74,15 +87,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'South East',
     languages: ['English', 'Igbo', 'Pidgin'],
     genre: 'Afrobeats & Hits',
-    streamUrl: 'https://a8.asurahosting.com:6690/radio.mp3',
+    streamUrl: null,
     brandColor: '#AD1457',
     accentColor: '#F48FB1',
     featured: false,
-    bitrate: '128 kbps MP3',
+    bitrate: 'Broadcast Only',
     currentShow: 'Enyimba Morning Drive',
     hostName: 'Nnamdi Okafor',
     listenersEstimate: 18900,
-    description: 'Real 99.1 FM Aba delivers high-energy music, street-smart talk shows, and vibrant entertainment across Aba and Abia State.'
+    description: 'Real 99.1 FM Aba delivers high-energy music, street-smart talk shows, and vibrant entertainment across Aba and Abia State.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Former AsuraHosting mount returned HTTP 403 HTML',
+    verificationNotes: 'Former stream a8.asurahosting.com:6690/radio.mp3 returns HTTP 403; official domain realfmaba.ng unreachable.'
   },
 
   // ==========================================
@@ -106,7 +124,13 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Shirin Safe da Labarun Karkara',
     hostName: 'Malam Adamu Yola',
     listenersEstimate: 21900,
-    description: 'Radio Gotel AM broadcasts on 917 kHz from Yola, delivering wide-coverage agrarian news, cultural dialogue, and public affairs across Adamawa and neighboring states.'
+    website: 'https://gotel911fm.com',
+    description: 'Radio Gotel AM broadcasts on 917 kHz from Yola, delivering wide-coverage agrarian news, cultural dialogue, and public affairs across Adamawa and neighboring states.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'Gotel Africa publishes a live stream for FM 91.1 only; AM 917 kHz (TuneIn s277642) has no active public internet stream.'
   },
   {
     id: 'gotel-fm-yola',
@@ -118,15 +142,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North East',
     languages: ['Hausa', 'English', 'Fulfulde'],
     genre: 'News & Talk',
-    streamUrl: null,
+    streamUrl: 'https://stream.voltsradio.com/listen/gotel/radio.mp3',
     brandColor: '#00695C',
     accentColor: '#80CBC4',
-    featured: false,
-    bitrate: 'Broadcast Only',
+    featured: true,
+    bitrate: '192 kbps MP3',
     currentShow: 'Gotel Morning Dialogue with Malam Adamu',
     hostName: 'Malam Adamu Yola',
     listenersEstimate: 32400,
-    description: 'Based in Yola, Gotel FM 91.1 provides extensive news reporting, agricultural guides, civic education, and cultural programming in Hausa, Fulfulde, and English.'
+    website: 'https://gotel911fm.com',
+    description: 'Based in Yola, Gotel FM 91.1 provides extensive news reporting, agricultural guides, civic education, and cultural programming in Hausa, Fulfulde, and English.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationNotes: 'Repaired via official gotel911fm.com/radio/ AzuraCast stream (icy-name: "Gotel Africa", 192 kbps MP3, 69KB live broadcast verified).'
   },
   {
     id: 'nas-fm-yola',
@@ -138,8 +167,8 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North East',
     languages: ['Hausa', 'English', 'Fulfulde'],
     genre: 'Afrobeats & Hits',
-    streamUrl: 'https://stream.zeno.fm/5yuz9tnfpfkvv',
-    backupStreamUrl: 'https://eu8.fastcast4u.com/proxy/nasfmyola?mp=/1',
+    streamUrl: 'https://radio.sternhost.com/listen/nas_fm_yola/radio.mp3',
+    backupStreamUrl: 'https://stream.zeno.fm/5yuz9tnfpfkvv',
     brandColor: '#C2185B',
     accentColor: '#F8BBD0',
     featured: true,
@@ -147,7 +176,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Yola Sunrise & Youth Beats',
     hostName: 'DJ Simple',
     listenersEstimate: 28500,
-    description: 'NAS FM 89.9 is a favorite commercial radio station in Yola, blending trending youth music, urban discussions, and live entertainment.'
+    website: 'https://nasfmradio.com.ng',
+    description: 'NAS FM 89.9 is a favorite commercial radio station in Yola, blending trending youth music, urban discussions, and live entertainment.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationNotes: 'Repaired primary to official nasfmradio.com.ng AzuraCast stream (icy-name: "Nas FM Yola") with verified Zeno.FM backup ("NAS FM Yola 89.9").'
   },
   {
     id: 'pulaaku-fm-yola',
@@ -167,7 +201,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Haala Pulaaku & Cultural Folklore',
     hostName: 'Ardo Modibbo',
     listenersEstimate: 35100,
-    description: 'Pulaaku FM 92.3 in Yola is dedicated to the preservation of Fulbe cultural heritage, pastoralist empowerment, nomadic education, and peaceful coexistence.'
+    description: 'Pulaaku FM 92.3 in Yola is dedicated to the preservation of Fulbe cultural heritage, pastoralist empowerment, nomadic education, and peaceful coexistence.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationNotes: 'MP3 stream verified via Zeno.FM (icy-name: "Radio Pulaaku Yola", 80KB live Fulfulde audio verified).'
   },
   {
     id: 'abc-fm-yola',
@@ -187,7 +225,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Adamawa Today & Executive Brief',
     hostName: 'Amina Yola',
     listenersEstimate: 26800,
-    description: 'Adamawa Broadcasting Corporation (ABC) FM 95.7 Yola is the official state radio station providing statewide government policies, news, and entertainment.'
+    description: 'Adamawa Broadcasting Corporation (ABC) FM 95.7 Yola is the official state radio station providing statewide government policies, news, and entertainment.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'Terrestrial FM broadcaster only; no active official live internet stream endpoint published.'
   },
   {
     id: 'abc-am-yola',
@@ -207,7 +250,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Noma Da Kiwo a Jihar Adamawa',
     hostName: 'Mallam Bello Hong',
     listenersEstimate: 19400,
-    description: 'Broadcasting on Medium Wave AM 1440 kHz from Yola, ABC AM reaches rural communities, cattle rearers, and farmers throughout the North East.'
+    description: 'Broadcasting on Medium Wave AM 1440 kHz from Yola, ABC AM reaches rural communities, cattle rearers, and farmers throughout the North East.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'Terrestrial AM broadcaster only; no active official live internet stream endpoint published.'
   },
   {
     id: 'fombina-fm-yola',
@@ -219,15 +267,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North East',
     languages: ['Hausa', 'Fulfulde', 'English'],
     genre: 'Cultural & Community',
-    streamUrl: null,
+    streamUrl: 'https://stream.zeno.fm/ec741dqm7e9uv',
     brandColor: '#4E342E',
     accentColor: '#BCAAA4',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Rayuwar Karkara (Rural Life & Harmony)',
     hostName: 'Hauwa Fombina',
     listenersEstimate: 22400,
-    description: 'Federal Radio Corporation of Nigeria (FRCN) station in Yola, providing grassroots community coverage, civic education, and unity broadcasts.'
+    website: 'https://fombinafmyola.com.ng',
+    description: 'Federal Radio Corporation of Nigeria (FRCN) station in Yola, providing grassroots community coverage, civic education, and unity broadcasts.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationNotes: 'Official Zeno.FM stream verified (icy-name: "Fombina Digital Radio", 80KB live audio payload confirmed).'
   },
   {
     id: 'usaku-fm-yola',
@@ -243,11 +296,16 @@ export const INITIAL_STATIONS: Station[] = [
     brandColor: '#00838F',
     accentColor: '#80DEEA',
     featured: true,
-    bitrate: '128 kbps MP3',
+    bitrate: '96 kbps MP3',
     currentShow: 'Barka Da Safiya Usaku',
     hostName: 'Usman Usaku',
     listenersEstimate: 27900,
-    description: 'Usaku FM 90.5 broadcasts from Yola with live community talk, investigative reports, and lively Northern Nigerian programming.'
+    website: 'https://usakufm.com',
+    description: 'Usaku FM 90.5 broadcasts from Yola with live community talk, investigative reports, and lively Northern Nigerian programming.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationNotes: 'Official usakufm.com FastCast4u MP3 stream verified (icy-url: "https://usakufm.com", live StreamTitle confirmed).'
   },
   {
     id: 'pakka-fm-mubi',
@@ -267,7 +325,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Kasuwancin Mubi da Mandara Digest',
     hostName: 'Sadiq Mubi',
     listenersEstimate: 18600,
-    description: 'Pakka FM 88.7 broadcasts in Mubi near the Cameroon border, providing cross-border commodity price updates, cattle trade news, and Mandara cultural lore.'
+    description: 'Pakka FM 88.7 broadcasts in Mubi near the Cameroon border, providing cross-border commodity price updates, cattle trade news, and Mandara cultural lore.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'hd-press-fm-mubi',
@@ -287,7 +350,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'The Mubi Investigative Newsroom',
     hostName: 'Ahmed Mubi',
     listenersEstimate: 17800,
-    description: 'HD Press FM 96.7 provides cutting-edge local news coverage, community advocacy, and political analysis for Northern Adamawa.'
+    description: 'HD Press FM 96.7 provides cutting-edge local news coverage, community advocacy, and political analysis for Northern Adamawa.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'Terrestrial broadcaster only; no active public live stream endpoint found.'
   },
   {
     id: 'amana-fm-gella-mubi',
@@ -307,7 +375,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Muryar Zaman Lafiya da Hadin Kai',
     hostName: 'Mallam Isa Gella',
     listenersEstimate: 16400,
-    description: 'Amana FM 99.6 broadcasts from Gella, Mubi South, promoting peace-building, community development, and ethnic harmony.'
+    description: 'Amana FM 99.6 broadcasts from Gella, Mubi South, promoting peace-building, community development, and ethnic harmony.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationError: 'Official Zeno mount (rdpfsoaq4whvv) returned HTTP 401 inactive encoder; TuneIn s334359 unavailable',
+    verificationNotes: 'Official site amanafmradiogella.ng unreachable and Zeno encoder offline; no unrelated audio substituted.'
   },
   {
     id: 'nas-fm-mubi',
@@ -328,7 +401,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Northern Beats & Mubi Campus Express',
     hostName: 'DJ Danladi',
     listenersEstimate: 21300,
-    description: 'NAS FM 105.5 Mubi serves commercial and college listeners in Mubi with the freshest Northern Afro-fusion rhythms and youth banter.'
+    website: 'https://nasfm.com.ng/mubi',
+    description: 'NAS FM 105.5 Mubi serves commercial and college listeners in Mubi with the freshest Northern Afro-fusion rhythms and youth banter.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationNotes: 'MP3 stream verified via Zeno.FM (icy-name: "NAS FM Mubi", 80KB live audio) with verified FastCast4u backup (icy-url: "https://nasfm.com.ng/mubi").'
   },
   {
     id: 'abc-hong',
@@ -348,7 +426,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Muryar Karkara a Hong',
     hostName: 'Stephen Hong',
     listenersEstimate: 15900,
-    description: 'ABC Hong 106.3 FM is the vital regional relay station of Adamawa Broadcasting Corporation, serving the agricultural hub of Hong and surrounding villages.'
+    description: 'ABC Hong 106.3 FM is the vital regional relay station of Adamawa Broadcasting Corporation, serving the agricultural hub of Hong and surrounding villages.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'Terrestrial relay station only; no active public live stream endpoint found.'
   },
   {
     id: 'fedpoly-mubi-radio',
@@ -368,7 +451,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'FedPoly Mubi Tech Arena & Campus Life',
     hostName: 'Engineer Dan Mubi',
     listenersEstimate: 19800,
-    description: 'Federal Polytechnic Mubi Radio 108.0 FM is the campus station promoting educational broadcasts, science and technology innovations, student debates, and contemporary music.'
+    description: 'Federal Polytechnic Mubi Radio 108.0 FM is the campus station promoting educational broadcasts, science and technology innovations, student debates, and contemporary music.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:38:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'Campus FM transmitter only; no active public live internet stream endpoint found.'
   },
 
   // ==========================================
@@ -392,7 +480,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Uyo Sunrise & The Morning Flight',
     hostName: 'Anietie Ekong',
     listenersEstimate: 27800,
-    description: 'Uyo’s favorite private commercial station delivering punchy morning talk, investigative journalism, and smooth Afro-fusion tracks.'
+    description: 'Uyo’s favorite private commercial station delivering punchy morning talk, investigative journalism, and smooth Afro-fusion tracks.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (2508 bytes, 250ms, icy: "no name").'
   },
   {
     id: 'planet-fm-uyo',
@@ -412,7 +504,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Urban Drive Time Akwa Ibom',
     hostName: 'DJ K-cee',
     listenersEstimate: 19500,
-    description: 'Pioneering private radio station in Akwa Ibom with vibrant entertainment, youth programming, and regional news.'
+    description: 'Pioneering private radio station in Akwa Ibom with vibrant entertainment, youth programming, and regional news.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (12096 bytes, 513ms, icy: "Planet 101.1 FM").'
   },
   {
     id: 'memories-fm-uyo',
@@ -432,7 +528,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Uyo Timeless Classics',
     hostName: 'Idara Bassey',
     listenersEstimate: 16200,
-    description: 'Memories 96.5 FM Uyo spins classic soul, nostalgic Nigerian highlife, and smooth contemporary melodies across Akwa Ibom.'
+    description: 'Memories 96.5 FM Uyo spins classic soul, nostalgic Nigerian highlife, and smooth contemporary melodies across Akwa Ibom.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (2508 bytes, 178ms, icy: "Memories 96.5 FM Uyo").'
   },
 
   // ==========================================
@@ -456,7 +556,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Okwu Igbo na Uzo Ahia Onitsha (Market Talk)',
     hostName: 'Mazi Emeka',
     listenersEstimate: 28400,
-    description: 'Broadcasting in commercial Onitsha with daily market commodity updates, Igbo cultural heritage, and community empowerment.'
+    description: 'Broadcasting in commercial Onitsha with daily market commodity updates, Igbo cultural heritage, and community empowerment.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (3596 bytes, 332ms, icy: "Radio Sapientia Onitsha").'
   },
   {
     id: 'abs-awka',
@@ -476,7 +580,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Anambra Sunrise & Good Morning Anambra',
     hostName: 'Chinedu Okoye',
     listenersEstimate: 22100,
-    description: 'Anambra Broadcasting Service (ABS) brings statewide news, executive updates, cultural highlife, and educational discussions.'
+    description: 'Anambra Broadcasting Service (ABS) brings statewide news, executive updates, cultural highlife, and educational discussions.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Zeno mount returned HTTP 503 Service Unavailable',
+    verificationNotes: 'Zeno mount inactive during audit.'
   },
   {
     id: 'ogene-fm-awka',
@@ -496,7 +605,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Ogene Morning Dew & Igbo Culture',
     hostName: 'Obinna Nwankwo',
     listenersEstimate: 19400,
-    description: 'Ogene 98.3 FM Awka delivers grassroots Anambra news, Igbo oral heritage, highlife rhythms, and lively listener phone-in debates.'
+    description: 'Ogene 98.3 FM Awka delivers grassroots Anambra news, Igbo oral heritage, highlife rhythms, and lively listener phone-in debates.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 738ms, icy: "Ogene 98.3 fm").'
   },
   {
     id: 'wazobia-onitsha',
@@ -516,7 +629,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Onitsha Market Morning Ginger',
     hostName: 'Oga Chike',
     listenersEstimate: 29200,
-    description: 'Wazobia FM 93.7 Onitsha brings high-energy Pidgin comedy, commercial city traffic alerts, and non-stop Afrobeats across Anambra and Delta.'
+    description: 'Wazobia FM 93.7 Onitsha brings high-energy Pidgin comedy, commercial city traffic alerts, and non-stop Afrobeats across Anambra and Delta.',
+    streamFormat: 'HLS',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'HLS stream verified (262 bytes, 1360ms).'
   },
 
   // ==========================================
@@ -532,15 +649,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North East',
     languages: ['Hausa', 'English'],
     genre: 'News & Talk',
-    streamUrl: null,
+    streamUrl: 'https://golive.abdultechltd.com/listen/globe_fm_bauchi/radio.mp3',
     brandColor: '#2E7D32',
     accentColor: '#A5D6A7',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Barka Da Safiya Bauchi',
     hostName: 'Ibrahim Bauchi',
     listenersEstimate: 19800,
-    description: 'FRCN Globe FM Bauchi broadcasts informative educational programs, Yankari tourism highlights, and Northern current affairs.'
+    website: 'https://globefmbauchi.com.ng',
+    description: 'FRCN Globe FM Bauchi broadcasts informative educational programs, Yankari tourism highlights, and Northern current affairs.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Repaired via official broadcaster server golive.abdultechltd.com (icy-name: "Globe FM Bauchi").'
   },
   {
     id: 'brc-fm-bauchi',
@@ -559,7 +681,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '64 kbps AAC',
     currentShow: 'Dandalin Matasa (Youth Arena)',
     listenersEstimate: 15300,
-    description: 'Bauchi Radio Corporation is the official state radio, broadcasting agrarian news, local folklore, and community talk.'
+    description: 'Bauchi Radio Corporation is the official state radio, broadcasting agrarian news, local folklore, and community talk.',
+    streamFormat: 'AAC',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'AAC stream verified (3599 bytes, 138ms, icy: "BRC Radio Bauchi").'
   },
 
   // ==========================================
@@ -575,15 +701,19 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'South South',
     languages: ['English', 'Pidgin', 'Multilingual'],
     genre: 'News & Talk',
-    streamUrl: null,
+    streamUrl: 'https://stream.zeno.fm/9t7rmkvxv2xuv',
     brandColor: '#00838F',
     accentColor: '#80DEEA',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Bayelsa Today & Riverine Realities',
     hostName: 'Ebiere Tari',
     listenersEstimate: 18700,
-    description: 'Broadcasting from Yenagoa with riverine community updates, maritime environmental coverage, and South South musical flavors.'
+    description: 'Broadcasting from Yenagoa with riverine community updates, maritime environmental coverage, and South South musical flavors.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Repaired via verified Nigerian Zeno.FM endpoint (icy-name: "Glory FM 97.1").'
   },
   {
     id: 'royal-fm-yenagoa',
@@ -603,7 +733,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Niger Delta Cruise',
     hostName: 'DJ Preye',
     listenersEstimate: 14100,
-    description: 'Youth-centric urban music and entertainment radio bringing the freshest street rhythms to Bayelsa State.'
+    description: 'Youth-centric urban music and entertainment radio bringing the freshest street rhythms to Bayelsa State.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
 
   // ==========================================
@@ -627,7 +762,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Benue Agrarian Dialogue & Morning Grain',
     hostName: 'Terver Akase',
     listenersEstimate: 21300,
-    description: 'FRCN Harvest FM Makurdi provides timely news on agricultural markets, farmers, communal peace, and middle belt culture.'
+    description: 'FRCN Harvest FM Makurdi provides timely news on agricultural markets, farmers, communal peace, and middle belt culture.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'radio-benue-makurdi',
@@ -647,7 +787,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Benue Cultural Echoes',
     hostName: 'Dooshima Orngu',
     listenersEstimate: 16400,
-    description: 'State broadcasting station serving Tiv, Idoma, Igede and other communities across Benue State.'
+    description: 'State broadcasting station serving Tiv, Idoma, Igede and other communities across Benue State.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Mixlr endpoint returned HTTP 404',
+    verificationNotes: 'Former Mixlr channel unreachable.'
   },
 
   // ==========================================
@@ -663,15 +808,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North East',
     languages: ['Hausa', 'English', 'Kanuri'],
     genre: 'News & Talk',
-    streamUrl: null,
+    streamUrl: 'https://peacefm-bapson.radioca.st/stream',
     brandColor: '#1B5E20',
     accentColor: '#C8E6C9',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Muryar Zaman Lafiya (Voice of Peace)',
     hostName: 'Mustapha Shehu',
     listenersEstimate: 34500,
-    description: 'FRCN Peace FM Maiduguri is a pillar of hope in the Lake Chad basin, broadcasting humanitarian updates, peace-building, and Kanuri & Hausa programs.'
+    website: 'https://www.peacefmmaiduguri.ng',
+    description: 'FRCN Peace FM Maiduguri is a pillar of hope in the Lake Chad basin, broadcasting humanitarian updates, peace-building, and Kanuri & Hausa programs.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Repaired via official Peace FM Maiduguri RadioCast endpoint (icy-name: "Peace FM Maiduguri 102.5").'
   },
   {
     id: 'brtv-maiduguri',
@@ -690,7 +840,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Zaman Lafiya a Borno',
     listenersEstimate: 19800,
-    description: 'Official broadcaster of Borno State, bringing community recovery stories, education, and cultural identity.'
+    description: 'Official broadcaster of Borno State, bringing community recovery stories, education, and cultural identity.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (2507 bytes, 1180ms, icy: "BRTV Maiduguri").'
   },
 
   // ==========================================
@@ -714,7 +868,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'The Calabar Carnival Drive & Hit Morning Express',
     hostName: 'Duke Henshaw',
     listenersEstimate: 31200,
-    description: 'Calabar’s premier private radio station, renowned for modern Afrobeats, Calabar Carnival coverage, and energetic youth dialogue.'
+    description: 'Calabar’s premier private radio station, renowned for modern Afrobeats, Calabar Carnival coverage, and energetic youth dialogue.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (3607 bytes, 260ms, icy: "HIT 95.9 FM").'
   },
   {
     id: 'crbc-calabar',
@@ -733,7 +891,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Heritage Hour',
     listenersEstimate: 17200,
-    description: 'Cross River Broadcasting Corporation radio, bringing eco-tourism news, Rainforest preservation talk, and regional events.'
+    description: 'Cross River Broadcasting Corporation radio, bringing eco-tourism news, Rainforest preservation talk, and regional events.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Zeno mount returned HTTP 401 inactive encoder',
+    verificationNotes: 'Encoder offline during spaced verification.'
   },
   {
     id: 'fad-fm-calabar',
@@ -753,7 +916,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Paradise City Morning Cruise',
     hostName: 'Edem Bassey',
     listenersEstimate: 18400,
-    description: 'FAD 93.1 FM Calabar connects Cross River listeners with fresh music, local civic discussions, and youth culture.'
+    description: 'FAD 93.1 FM Calabar connects Cross River listeners with fresh music, local civic discussions, and youth culture.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (4096 bytes, 221ms, icy: "FAD FM").'
   },
 
   // ==========================================
@@ -777,7 +944,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Waffi Morning Ginger & Street Level Banter',
     hostName: 'Bros Ogaga & Mama Delta',
     listenersEstimate: 32900,
-    description: 'Raw, authentic Warri humor, local delta music, street gist, and everyday struggles tackled with unstoppable smiles.'
+    description: 'Raw, authentic Warri humor, local delta music, street gist, and everyday struggles tackled with unstoppable smiles.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (2508 bytes, 344ms, icy: "no name").'
   },
   {
     id: 'trend-fm-asaba',
@@ -797,7 +968,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Asaba Midday Grooves',
     hostName: 'Emeka Smart',
     listenersEstimate: 23100,
-    description: 'Broadcasting from the Delta State capital with contemporary music, political analysis, and Niger Delta youth interviews.'
+    description: 'Broadcasting from the Delta State capital with contemporary music, political analysis, and Niger Delta youth interviews.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
 
   // ==========================================
@@ -821,7 +997,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Ebonyi Sunrise & Rice Belt Digest',
     hostName: 'Nkechi Nweke',
     listenersEstimate: 18400,
-    description: 'Broadcasting from Abakaliki, Salt FM covers agricultural breakthroughs, mining in Ebonyi, and Igbo community affairs.'
+    description: 'Broadcasting from Abakaliki, Salt FM covers agricultural breakthroughs, mining in Ebonyi, and Igbo community affairs.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (15882 bytes, 718ms, icy: "Salt FM 98.1 Abakaliki").'
   },
   {
     id: 'unity-fm-abakaliki',
@@ -840,7 +1020,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Omenala ndi Igbo',
     listenersEstimate: 12500,
-    description: 'FRCN affiliate in Ebonyi State providing traditional folklore, indigenous highlife, and grassroots reports.'
+    description: 'FRCN affiliate in Ebonyi State providing traditional folklore, indigenous highlife, and grassroots reports.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
 
   // ==========================================
@@ -864,7 +1049,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Benin City Drive Time Grooves',
     hostName: 'Osaro Osagie',
     listenersEstimate: 29500,
-    description: 'Hot Afrobeats, South South comedy skits, Benin cultural festivities coverage, and street vibes from Ring Road.'
+    description: 'Hot Afrobeats, South South comedy skits, Benin cultural festivities coverage, and street vibes from Ring Road.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Zeno mount returned HTTP 401 inactive encoder',
+    verificationNotes: 'Encoder offline during spaced verification.'
   },
   {
     id: 'vibes-fm-benin',
@@ -883,7 +1073,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Edo State In Focus',
     listenersEstimate: 19800,
-    description: 'Prominent independent station in Benin City offering fearless political dialogue, sports debates, and top chart music.'
+    description: 'Prominent independent station in Benin City offering fearless political dialogue, sports debates, and top chart music.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'hod-radio-benin',
@@ -903,7 +1098,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Benin Morning Praise & Word',
     hostName: 'Pastor Osahon',
     listenersEstimate: 14600,
-    description: 'HOD Radio broadcasts uplifting Christian gospel music, teachings, and faith-filled encouragement from Benin City.'
+    description: 'HOD Radio broadcasts uplifting Christian gospel music, teachings, and faith-filled encouragement from Benin City.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (3130 bytes, 1322ms, icy: "HOD RADIO").'
   },
   {
     id: 'esan-binoculars-edo',
@@ -923,7 +1122,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Esan Land & Diaspora Connect',
     hostName: 'Chief Ehimen',
     listenersEstimate: 11800,
-    description: 'Dedicated to Edo Central culture, Esan music, community news, and diaspora connections across the globe.'
+    description: 'Dedicated to Edo Central culture, Esan music, community news, and diaspora connections across the globe.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (8186 bytes, 3418ms, icy: "Esan Binaculars Radio").'
   },
 
   // ==========================================
@@ -939,15 +1142,19 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'South West',
     languages: ['Yoruba', 'English', 'Pidgin'],
     genre: 'News & Talk',
-    streamUrl: null,
+    streamUrl: 'https://centova.radioservers.biz/proxy/voicefm/stream',
     brandColor: '#008751',
     accentColor: '#A5D6A7',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '64 kbps AAC',
     currentShow: 'Ekiti Kete Morning Briefing',
     hostName: 'Kayode Alabi',
     listenersEstimate: 21900,
-    description: 'Voice FM in Ado-Ekiti is celebrated for its deep intellectual discourse, educational programs, and authentic Yoruba language broadcasting.'
+    description: 'Voice FM in Ado-Ekiti is celebrated for its deep intellectual discourse, educational programs, and authentic Yoruba language broadcasting.',
+    streamFormat: 'AAC',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'HTTPS AAC stream verified via centova.radioservers.biz/proxy/voicefm/stream (icy: "DB91-TX", 4096 bytes).'
   },
   {
     id: 'bses-ado-ekiti',
@@ -959,14 +1166,19 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'South West',
     languages: ['Yoruba', 'English'],
     genre: 'Cultural & Community',
-    streamUrl: null,
+    streamUrl: 'https://cast5.asurahosting.com/proxy/myplanet/stream?type=http&nocache=5',
     brandColor: '#6D4C41',
     accentColor: '#D7CCC8',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Ilera Loro',
     listenersEstimate: 14700,
-    description: 'State broadcasting station celebrating Ekiti folklore, health enlightenment, and cocoa farming updates.'
+    website: 'https://www.bses.com.ng',
+    description: 'State broadcasting station celebrating Ekiti folklore, health enlightenment, and cocoa farming updates.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Repaired from official bses.com.ng player embed (AsuraHosting MP3 stream).'
   },
 
   // ==========================================
@@ -990,7 +1202,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Coal City Breakfast Express & Afro Heat',
     hostName: 'Chuka & Ngozi',
     listenersEstimate: 33800,
-    description: 'Enugu’s top-rated lifestyle and youth radio, blending Afropop hits with Igbo cultural discussions and Eastern sports analysis.'
+    description: 'Enugu’s top-rated lifestyle and youth radio, blending Afropop hits with Igbo cultural discussions and Eastern sports analysis.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'urban-radio-enugu',
@@ -1010,7 +1227,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Afro-fusion Midday Express',
     hostName: 'Somtochukwu',
     listenersEstimate: 26700,
-    description: 'Modern urban tunes, youth entrepreneurship discussions, and vibrant campus life updates across Enugu institutions.'
+    description: 'Modern urban tunes, youth entrepreneurship discussions, and vibrant campus life updates across Enugu institutions.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (14968 bytes, 291ms).'
   },
   {
     id: 'solid-fm-enugu',
@@ -1030,7 +1251,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Solid Morning Ride',
     hostName: 'Ikechukwu Ani',
     listenersEstimate: 24500,
-    description: 'Solid 100.9 FM brings lively talk radio, breaking South East news, and high-tempo music across Enugu State.'
+    description: 'Solid 100.9 FM brings lively talk radio, breaking South East news, and high-tempo music across Enugu State.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (14263 bytes, 490ms, icy: "Solidfm").'
   },
 
   // ==========================================
@@ -1054,7 +1279,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Barka Da Rana Gombe',
     hostName: 'Aliyu Gombe',
     listenersEstimate: 19100,
-    description: 'Connecting farmers, merchants, and students in the commercial hub of Gombe with current news and Hausa music.'
+    description: 'Connecting farmers, merchants, and students in the commercial hub of Gombe with current news and Hausa music.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified via Zeno.FM (icy-name: "Progress Fm", 15882 bytes).'
   },
   {
     id: 'gmc-fm-gombe',
@@ -1073,7 +1302,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Al’adun Arewa',
     listenersEstimate: 13900,
-    description: 'Preserving traditional Northern folklore, Islamic ethics, and local community developments.'
+    description: 'Preserving traditional Northern folklore, Islamic ethics, and local community developments.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
 
   // ==========================================
@@ -1097,7 +1331,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Heartland Morning Flight & Igbo Ogene',
     hostName: 'Mazi Nnamdi',
     listenersEstimate: 29800,
-    description: 'Imo State’s premier broadcasting voice, covering Owerri city nightlife, state governance, cultural festivals, and highlife.'
+    description: 'Imo State’s premier broadcasting voice, covering Owerri city nightlife, state governance, cultural festivals, and highlife.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Zeno mount returned HTTP 401 inactive encoder',
+    verificationNotes: 'Encoder offline during spaced verification.'
   },
   {
     id: 'darling-fm-owerri',
@@ -1109,15 +1348,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'South East',
     languages: ['English', 'Pidgin'],
     genre: 'Youth & Urban Pop',
-    streamUrl: null,
+    streamUrl: 'https://phoebe.streamerr.co:7567/stream',
     brandColor: '#E91E63',
     accentColor: '#F8BBD0',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Owerri Sunset Cruise',
     hostName: 'Queen Jennifer',
     listenersEstimate: 20400,
-    description: 'Urban youth entertainment powerhouse spinning hot Afropop, lifestyle tips, and university gossip.'
+    website: 'https://darlingfm.com',
+    description: 'Urban youth entertainment powerhouse spinning hot Afropop, lifestyle tips, and university gossip.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Repaired from official darlingfm.com player embed (phoebe.streamerr.co:7567).'
   },
   {
     id: '1radio-oguta',
@@ -1137,7 +1381,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Igbo Highlife & Oguta Cultural Hour',
     hostName: 'Chief Chidi',
     listenersEstimate: 15200,
-    description: 'Streaming live from Imo State with authentic Igbo highlife, community updates, and Eastern Nigerian culture.'
+    description: 'Streaming live from Imo State with authentic Igbo highlife, community updates, and Eastern Nigerian culture.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (8186 bytes, 2648ms, icy: "1Radio Oguta").'
   },
 
   // ==========================================
@@ -1161,7 +1409,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Shirin Dutse Da Kewayenta',
     hostName: 'Mallam Sanusi Dutse',
     listenersEstimate: 18700,
-    description: 'FRCN station based in Dutse, broadcasting developmental reporting, sesame & rice irrigation guides, and Hausa poetry.'
+    description: 'FRCN station based in Dutse, broadcasting developmental reporting, sesame & rice irrigation guides, and Hausa poetry.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'radio-jigawa-dutse',
@@ -1180,7 +1433,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Kasar Manoma (Land of Farmers)',
     listenersEstimate: 14600,
-    description: 'State government service keeping rural Jigawa communities informed about agricultural innovations and civic welfare.'
+    description: 'State government service keeping rural Jigawa communities informed about agricultural innovations and civic welfare.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'freedom-radio-dutse',
@@ -1200,7 +1458,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Barka Da Safiya Dutse',
     hostName: 'Garba Muhammad',
     listenersEstimate: 23400,
-    description: 'Independent voice of Jigawa State delivering grassroots journalism, public accountability shows, and Hausa cultural programming.'
+    description: 'Independent voice of Jigawa State delivering grassroots journalism, public accountability shows, and Hausa cultural programming.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 858ms, icy: "Freedom Radio Dutse").'
   },
 
   // ==========================================
@@ -1216,15 +1478,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North West',
     languages: ['English', 'Hausa', 'Pidgin'],
     genre: 'News & Talk',
-    streamUrl: null,
+    streamUrl: 'https://media2.streambrothers.com:2020/stream/8098',
     brandColor: '#303F9F',
     accentColor: '#C5CAE9',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'The Kaduna Dialogue & Morning Crossfire',
     hostName: 'John Danladi',
     listenersEstimate: 29800,
-    description: 'Dynamic commercial talk and news promoting harmonious communal living, Northern industrial revival, and youth empowerment.'
+    website: 'https://invictafmng.com',
+    description: 'Dynamic commercial talk and news promoting harmonious communal living, Northern industrial revival, and youth empowerment.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Repaired from official invictafmng.com player embed (streambrothers.com:2020/stream/8098).'
   },
   {
     id: 'liberty-radio-kaduna',
@@ -1236,8 +1503,7 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North West',
     languages: ['Hausa', 'English'],
     genre: 'News & Talk',
-    streamUrl: 'https://stream.zeno.fm/zue0ut6kdseuv',
-    backupStreamUrl: 'https://stream.zenolive.com/sh70ask7da5tv',
+    streamUrl: 'https://stream.zenolive.com/sh70ask7da5tv',
     brandColor: '#B71C1C',
     accentColor: '#EF9A9A',
     featured: true,
@@ -1245,7 +1511,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Kadaura Live Review',
     hostName: 'Yakubu Lere',
     listenersEstimate: 26300,
-    description: 'One of the North’s foremost independent political broadcasting platforms, renowned for incisive interviews and civic courage.'
+    description: 'One of the North’s foremost independent political broadcasting platforms, renowned for incisive interviews and civic courage.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream restored & verified via stream.zenolive.com/sh70ask7da5tv (icy: "Liberty Radio Kaduna", 15744 bytes).'
   },
   {
     id: 'ksmc-kaduna',
@@ -1264,7 +1534,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Zaman Lafiya',
     listenersEstimate: 19500,
-    description: 'The historic voice of the Crocodile City, broadcasting educational programs and traditional music.'
+    description: 'The historic voice of the Crocodile City, broadcasting educational programs and traditional music.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
 
   // ==========================================
@@ -1288,7 +1563,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Barka Da Hantsi (Good Morning Show)',
     hostName: 'Nasiru Salisu Zango',
     listenersEstimate: 47900,
-    description: 'Pioneering private radio in Northern Nigeria. Famous for civic courage, investigative journalism, and deep connection with the Hausa heartland.'
+    description: 'Pioneering private radio in Northern Nigeria. Famous for civic courage, investigative journalism, and deep connection with the Hausa heartland.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (13776 bytes, 843ms, icy: "Freedom Radio Kano").'
   },
   {
     id: 'arewa-radio-kano',
@@ -1308,7 +1587,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Kannywood Stars & Hausa Hip-hop Hitlist',
     hostName: 'Usman Gidan Dawa',
     listenersEstimate: 36500,
-    description: 'The epicenter of modern Hausa youth pop, Kannywood soundtrack hits, cultural poetry, and community discussions.'
+    description: 'The epicenter of modern Hausa youth pop, Kannywood soundtrack hits, cultural poetry, and community discussions.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 1691ms, icy: "AREWA RADIO").'
   },
   {
     id: 'rahma-radio-kano',
@@ -1328,7 +1611,13 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Tafseer & Faith Talks',
     hostName: 'Sheikh Aminu Daurawa',
     listenersEstimate: 21000,
-    description: 'Community-oriented Islamic educational programs, family counseling, and moral development in the ancient commercial city.'
+    website: 'https://www.rahmatv.com',
+    description: 'Community-oriented Islamic educational programs, family counseling, and moral development in the ancient commercial city.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'MyControlPanel mount returned HTTP 404 HTML',
+    verificationNotes: 'Former cast1.my-control-panel.com/proxy/salim1/stream returns HTTP 404 HTML and rahmatv.com timed out during audit.'
   },
   {
     id: 'wazobia-kano',
@@ -1348,7 +1637,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Kano Morning Ginger',
     hostName: 'DJ Sabon Gari',
     listenersEstimate: 31200,
-    description: 'Wazobia FM 95.1 Kano brings lively Pidgin banter, northern comedy, and Afrobeats energy to the commercial center of Kano.'
+    description: 'Wazobia FM 95.1 Kano brings lively Pidgin banter, northern comedy, and Afrobeats energy to the commercial center of Kano.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 3311ms, icy: "WAZOBI FM KANO 128K").'
   },
   {
     id: 'cool-fm-kano',
@@ -1368,7 +1661,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Cool Midday Drive Kano',
     hostName: 'Manni Kano',
     listenersEstimate: 27400,
-    description: 'Cool FM 96.9 Kano plays chart-topping Nigerian and international hits alongside vibrant urban talk in Kano.'
+    description: 'Cool FM 96.9 Kano plays chart-topping Nigerian and international hits alongside vibrant urban talk in Kano.',
+    streamFormat: 'AAC',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'AAC stream verified (16384 bytes, 1865ms, icy: "COOL FM KANO").'
   },
   {
     id: 'dala-fm-kano',
@@ -1388,7 +1685,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Kasuwar Kano da Labarai',
     hostName: 'Bello Dala',
     listenersEstimate: 24900,
-    description: 'Part of the Freedom Radio network, Dala FM 88.5 serves Kano with incisive Hausa discussions, youth empowerment, and sports commentary.'
+    description: 'Part of the Freedom Radio network, Dala FM 88.5 serves Kano with incisive Hausa discussions, youth empowerment, and sports commentary.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (15744 bytes, 702ms, icy: "Dala FM Kano").'
   },
   {
     id: 'radio-kano-fm',
@@ -1408,7 +1709,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Al’adun Kano da Masarauta',
     hostName: 'Sani Kano',
     listenersEstimate: 22100,
-    description: 'Kano State Broadcasting Corporation station featuring historic Hausa culture, public enlightenment, and regional news.'
+    description: 'Kano State Broadcasting Corporation station featuring historic Hausa culture, public enlightenment, and regional news.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (15270 bytes, 270ms).'
   },
   {
     id: 'kannywood-radio-kano',
@@ -1428,7 +1733,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Kannywood Top Soundtracks',
     hostName: 'DJ Arewa',
     listenersEstimate: 16800,
-    description: '24/7 Northern Nigerian entertainment stream showcasing Kannywood film soundtracks, Hausa hip-hop, and celebrity interviews.'
+    description: '24/7 Northern Nigerian entertainment stream showcasing Kannywood film soundtracks, Hausa hip-hop, and celebrity interviews.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (15882 bytes, 804ms, icy: "Kannywood Radio NG").'
   },
 
   // ==========================================
@@ -1452,7 +1761,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Barka Da Safiya Katsina',
     hostName: 'Kabiru Katsina',
     listenersEstimate: 22800,
-    description: 'FRCN Companion FM Katsina delivers up-to-the-minute border trade news, agricultural extension services, and classical Hausa oral history.'
+    description: 'FRCN Companion FM Katsina delivers up-to-the-minute border trade news, agricultural extension services, and classical Hausa oral history.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Zeno mount returned HTTP 401 inactive encoder',
+    verificationNotes: 'Encoder offline during spaced verification.'
   },
   {
     id: 'katsina-state-radio',
@@ -1464,14 +1778,19 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North West',
     languages: ['Hausa'],
     genre: 'Cultural & Community',
-    streamUrl: null,
+    streamUrl: 'https://radio.edus.ng/listen/ktrs/radio.mp3',
     brandColor: '#4E342E',
     accentColor: '#BCAAA4',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Al’adun Katsina',
     listenersEstimate: 17300,
-    description: 'State broadcasting station celebrating Katsina hospitality, traditional equestrian polo festivals, and local governance.'
+    website: 'http://ktrs.com.ng',
+    description: 'State broadcasting station celebrating Katsina hospitality, traditional equestrian polo festivals, and local governance.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Repaired from official ktrs.com.ng AzuraCast server (icy-name: "KTRS").'
   },
 
   // ==========================================
@@ -1495,7 +1814,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Kebbi Rice Hub & Morning Bulletin',
     hostName: 'Bello Kebbi',
     listenersEstimate: 19400,
-    description: 'FRCN Equity FM Birnin Kebbi brings daily Argungu fishing festival lore, massive rice cultivation updates, and cross-border trade reports.'
+    description: 'FRCN Equity FM Birnin Kebbi brings daily Argungu fishing festival lore, massive rice cultivation updates, and cross-border trade reports.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'kebbi-state-radio',
@@ -1514,7 +1838,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Labarin Karkara',
     listenersEstimate: 14800,
-    description: 'State-run broadcaster serving fishing communities, dry-season farmers, and traditional leaders.'
+    description: 'State-run broadcaster serving fishing communities, dry-season farmers, and traditional leaders.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
 
   // ==========================================
@@ -1530,15 +1859,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North Central',
     languages: ['English', 'Pidgin', 'Yoruba', 'Hausa'],
     genre: 'Afrobeats & Hits',
-    streamUrl: null,
+    streamUrl: 'http://s3.voscast.com:10436/stream',
     brandColor: '#D81B60',
     accentColor: '#F8BBD0',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Confluence Morning Drive & Street Vibes',
     hostName: 'Simpa Joseph',
     listenersEstimate: 24700,
-    description: 'Broadcasting right where Rivers Niger and Benue meet in Lokoja. Popular for vibrant entertainment, youth debates, and traffic alerts.'
+    website: 'https://grace955fm.com',
+    description: 'Broadcasting right where Rivers Niger and Benue meet in Lokoja. Popular for vibrant entertainment, youth debates, and traffic alerts.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified from official grace955fm.com VosCast server (icy: "Grace 95.5 FM", 12280 bytes; HTTPS-proxied via /api/stream-proxy).'
   },
   {
     id: 'prime-fm-lokoja',
@@ -1557,7 +1891,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Kogi Round Table',
     listenersEstimate: 16900,
-    description: 'Multilingual public radio bridging the diverse ethnic groups of Kogi State with balanced civil information.'
+    description: 'Multilingual public radio bridging the diverse ethnic groups of Kogi State with balanced civil information.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
 
   // ==========================================
@@ -1581,7 +1920,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Ilorin Afonja Morning Dialogue',
     hostName: 'Alhaji Abdulrasheed',
     listenersEstimate: 31200,
-    description: 'FRCN Harmony FM broadcasts from Idofian/Ilorin, bridging northern and western traditions with news, highlife, and community talk.'
+    description: 'FRCN Harmony FM broadcasts from Idofian/Ilorin, bridging northern and western traditions with news, highlife, and community talk.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'royal-fm-ilorin',
@@ -1593,15 +1937,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North Central',
     languages: ['English', 'Yoruba', 'Pidgin'],
     genre: 'Afrobeats & Hits',
-    streamUrl: null,
+    streamUrl: 'https://a9.asurahosting.com/listen/royalfm_95.1_ilorin/radio.mp3',
     brandColor: '#C2185B',
     accentColor: '#F48FB1',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Kwara Drive Jamz',
     hostName: 'DJ Fresh Ilorin',
     listenersEstimate: 25400,
-    description: 'Pioneering private commercial radio in Kwara State, spinning trending Afropop and campus entertainment.'
+    website: 'https://www.royalfm951.net.ng',
+    description: 'Pioneering private commercial radio in Kwara State, spinning trending Afropop and campus entertainment.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Repaired from official royalfm951.net.ng embed (icy-name: "RoyalFM 95.1 ILORIN").'
   },
   {
     id: 'sobi-fm-ilorin',
@@ -1620,7 +1969,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Oro Ilu wa (Matters of our Town)',
     listenersEstimate: 18200,
-    description: 'Community-centric radio dedicated to public welfare advocacy, legal empowerment, and Yoruba cultural roots.'
+    description: 'Community-centric radio dedicated to public welfare advocacy, legal empowerment, and Yoruba cultural roots.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 808ms, icy: "SOBI FM").'
   },
   {
     id: 'gerin-fm-ilorin',
@@ -1640,7 +1993,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Gerin Morning Splash',
     hostName: 'Kolawole Ade',
     listenersEstimate: 17500,
-    description: 'Gerin 95.5 FM Ilorin delivers contemporary Afrobeats, Yoruba community news, and lively morning press reviews.'
+    description: 'Gerin 95.5 FM Ilorin delivers contemporary Afrobeats, Yoruba community news, and lively morning press reviews.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 719ms, icy: "GerinFm 95.5 Ilorin").'
   },
   {
     id: 'ofm-ilorin',
@@ -1660,7 +2017,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Ilorin Afternoon Express',
     hostName: 'Tosin Olaniyi',
     listenersEstimate: 14300,
-    description: 'O FM 92.5 Ilorin connects Kwara youths with fresh chart hits, campus debates, and interactive entertainment.'
+    description: 'O FM 92.5 Ilorin connects Kwara youths with fresh chart hits, campus debates, and interactive entertainment.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (8448 bytes, 290ms, icy: "Ofm 92.5 Ilorin").'
   },
   {
     id: 'okin-fm-offa',
@@ -1680,7 +2041,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Iroyin Offa & Cultural Talk',
     hostName: 'Alhaji Sulaiman Offa',
     listenersEstimate: 15800,
-    description: 'Broadcasting from Offa in Kwara South, Okin 105.7 FM celebrates local heritage, commerce, and community affairs.'
+    description: 'Broadcasting from Offa in Kwara South, Okin 105.7 FM celebrates local heritage, commerce, and community affairs.',
+    streamFormat: 'OGG',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'OGG stream verified (4096 bytes, 867ms, icy: "This is my server name").'
   },
 
   // ==========================================
@@ -1706,7 +2071,11 @@ export const INITIAL_STATIONS: Station[] = [
     website: 'https://wazobiafm.com',
     twitter: '@Wazobia_FM',
     listenersEstimate: 42800,
-    description: 'Wazobia FM is Nigeria’s first full Pidgin English radio station, broadcasting vibrant talk, comedy, and the best of Afrobeats.'
+    description: 'Wazobia FM is Nigeria’s first full Pidgin English radio station, broadcasting vibrant talk, comedy, and the best of Afrobeats.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 2168ms, icy: "Wazobia FM Lagos").'
   },
   {
     id: 'nigeria-info-lagos',
@@ -1728,7 +2097,11 @@ export const INITIAL_STATIONS: Station[] = [
     website: 'https://nigeriainfo.fm',
     twitter: '@NigeriaInfoFM',
     listenersEstimate: 38400,
-    description: 'Nigeria’s premier talk radio station dedicated to in-depth current affairs analysis, breaking news, civil discourse, and sports debates.'
+    description: 'Nigeria’s premier talk radio station dedicated to in-depth current affairs analysis, breaking news, civil discourse, and sports debates.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 1741ms, icy: "NIGERIA INFO LAGOS").'
   },
   {
     id: 'cool-fm-lagos',
@@ -1750,7 +2123,11 @@ export const INITIAL_STATIONS: Station[] = [
     website: 'https://coolfm.ng',
     twitter: '@CoolFMNigeria',
     listenersEstimate: 46200,
-    description: 'Home of the freshest Afrobeats, global charts, celebrity interviews, and unbeatable entertainment vibes.'
+    description: 'Home of the freshest Afrobeats, global charts, celebrity interviews, and unbeatable entertainment vibes.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 2167ms, icy: "COOL FM LAGOS").'
   },
   {
     id: 'beat-fm-lagos',
@@ -1772,7 +2149,11 @@ export const INITIAL_STATIONS: Station[] = [
     website: 'https://thebeat999.com',
     twitter: '@thebeat999',
     listenersEstimate: 35100,
-    description: 'Urban youth culture, cutting-edge Afropop, fashion trends, and trending entertainment news.'
+    description: 'Urban youth culture, cutting-edge Afropop, fashion trends, and trending entertainment news.',
+    streamFormat: 'HLS',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'HLS stream verified (247 bytes, 1747ms).'
   },
   {
     id: 'brila-fm-lagos',
@@ -1795,7 +2176,11 @@ export const INITIAL_STATIONS: Station[] = [
     website: 'https://brila.net',
     twitter: '@brilafm889',
     listenersEstimate: 29800,
-    description: 'Passionate 24/7 sports coverage, Premier League, NPFL, Super Eagles updates, and fierce football debates.'
+    description: 'Passionate 24/7 sports coverage, Premier League, NPFL, Super Eagles updates, and fierce football debates.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 2167ms, icy: "no name").'
   },
   {
     id: 'soundcity-radio-lagos',
@@ -1817,7 +2202,12 @@ export const INITIAL_STATIONS: Station[] = [
     website: 'https://soundcity.tv',
     twitter: '@Soundcity985FM',
     listenersEstimate: 27400,
-    description: 'The sonic soundscape of modern Africa, premiering new singles and chart-topping street anthems.'
+    description: 'The sonic soundscape of modern Africa, premiering new singles and chart-topping street anthems.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'praise-world-radio',
@@ -1837,7 +2227,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'The Praise O’Clock Morning Show',
     hostName: 'Tola Omoniyi (Mr. Praiseworld)',
     listenersEstimate: 33400,
-    description: 'Inspiring urban gospel music, uplifting Christian Afrobeats, spoken word, and spiritual nourishment 24/7.'
+    description: 'Inspiring urban gospel music, uplifting Christian Afrobeats, spoken word, and spiritual nourishment 24/7.',
+    streamFormat: 'AAC',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'AAC stream verified (2246 bytes, 953ms, icy: "Praiseworld Radio").'
   },
   {
     id: 'bond-fm-lagos',
@@ -1857,7 +2251,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Aworo Eko (Morning Heritage)',
     hostName: 'Alhaji Rasaq',
     listenersEstimate: 16000,
-    description: 'FRCN cultural station broadcasting in Yoruba, Hausa, and Igbo to serve grassroots communities across Lagos State.'
+    description: 'FRCN cultural station broadcasting in Yoruba, Hausa, and Igbo to serve grassroots communities across Lagos State.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (8192 bytes, 701ms, icy: "radionigerialagos.gov.ng").'
   },
   {
     id: 'naija-fm-lagos',
@@ -1877,7 +2275,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Naija Morning Laughs & Afrobeats',
     hostName: 'Sabinus & Crew',
     listenersEstimate: 34600,
-    description: '100% Nigerian music, hilarious Pidgin comedy, and Lagos street-level banter all day long.'
+    description: '100% Nigerian music, hilarious Pidgin comedy, and Lagos street-level banter all day long.',
+    streamFormat: 'HLS',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'HLS stream verified (249 bytes, 1376ms).'
   },
   {
     id: 'classic-fm-lagos',
@@ -1897,7 +2299,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Morning Classics with Bukola',
     hostName: 'Bukola Ogunyemi',
     listenersEstimate: 31800,
-    description: 'Soul, jazz, timeless R&B, golden Nigerian highlife, and mature conversation in the heart of Lagos.'
+    description: 'Soul, jazz, timeless R&B, golden Nigerian highlife, and mature conversation in the heart of Lagos.',
+    streamFormat: 'HLS',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'HLS stream verified (253 bytes, 1647ms).'
   },
   {
     id: 'rhythm-fm-lagos',
@@ -1918,7 +2324,11 @@ export const INITIAL_STATIONS: Station[] = [
     hostName: 'Raezy & Crew',
     website: 'https://rhythm937.com',
     listenersEstimate: 37200,
-    description: 'Silverbird’s flagship Lagos entertainment station spinning contemporary Afrobeats, R&B, hip-hop, and pop hits.'
+    description: 'Silverbird’s flagship Lagos entertainment station spinning contemporary Afrobeats, R&B, hip-hop, and pop hits.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 2413ms, icy: "no name").'
   },
   {
     id: 'max-fm-lagos',
@@ -1938,7 +2348,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Max Breakfast Show',
     hostName: 'Murphy Ijemba',
     listenersEstimate: 28900,
-    description: 'Max 102.3 FM delivers the hottest Afrobeats charts, sports gist, and Lagos morning drive entertainment.'
+    description: 'Max 102.3 FM delivers the hottest Afrobeats charts, sports gist, and Lagos morning drive entertainment.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (3122 bytes, 961ms, icy: "MaxFM Lagos").'
   },
   {
     id: 'metro-fm-lagos',
@@ -1958,7 +2372,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Metro Sunrise & Smooth Jazz',
     hostName: 'Tunde Adeyemi',
     listenersEstimate: 19600,
-    description: 'FRCN Metro 97.7 FM broadcasts adult contemporary music, cosmopolitan talk, and Lagos traffic news from Ikoyi.'
+    description: 'FRCN Metro 97.7 FM broadcasts adult contemporary music, cosmopolitan talk, and Lagos traffic news from Ikoyi.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (8192 bytes, 1008ms, icy: "radionigerialagos.gov.ng").'
   },
   {
     id: 'lagos-talks-913',
@@ -1978,7 +2396,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'The Lagos Conversation',
     hostName: 'Jimi Disu',
     listenersEstimate: 26300,
-    description: 'Lagos’ dedicated talk station tackling governance, business, urban living, and lively listener debates.'
+    description: 'Lagos’ dedicated talk station tackling governance, business, urban living, and lively listener debates.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 2261ms, icy: "LAGOS TALK-ATUNWA").'
   },
   {
     id: 'kids-fm-lagos',
@@ -1998,7 +2420,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Storytime & Young Achievers',
     hostName: 'Auntie Bola',
     listenersEstimate: 14800,
-    description: 'Family-friendly programming featuring children’s stories, educational quizzes, clean music, and parenting tips.'
+    description: 'Family-friendly programming featuring children’s stories, educational quizzes, clean music, and parenting tips.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 2169ms, icy: "KIDS FM LAGOS").'
   },
   {
     id: 'faaji-fm-lagos',
@@ -2018,7 +2444,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Owambe & Fuji Classics',
     hostName: 'Alhaji Taiwo',
     listenersEstimate: 25100,
-    description: 'Faaji 106.5 FM celebrates Lagos grassroots culture with Fuji, Juju, Apala, classic highlife, and Yoruba banter.'
+    description: 'Faaji 106.5 FM celebrates Lagos grassroots culture with Fuji, Juju, Apala, classic highlife, and Yoruba banter.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (15882 bytes, 749ms, icy: "Faaji 106.5 fm Lagos").'
   },
   {
     id: 'inspiration-fm-lagos',
@@ -2038,7 +2468,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Family First & Morning Inspiration',
     hostName: 'Dan Foster Memorial Desk',
     listenersEstimate: 23700,
-    description: 'Uplifting music, thoughtful family talk, and positive community stories across metropolitan Lagos.'
+    description: 'Uplifting music, thoughtful family talk, and positive community stories across metropolitan Lagos.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 1287ms, icy: "Inspiration Radio").'
   },
   {
     id: 'unilag-fm-lagos',
@@ -2058,7 +2492,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Akoka Campus Drive',
     hostName: 'Unilag Student Broadcasters',
     listenersEstimate: 17400,
-    description: 'Broadcasting from the University of Lagos in Akoka, spotlighting campus talent, academic debates, and fresh student music.'
+    description: 'Broadcasting from the University of Lagos in Akoka, spotlighting campus talent, academic debates, and fresh student music.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (3639 bytes, 488ms, icy: "Unilag Radio").'
   },
   {
     id: 'goradio-lagos',
@@ -2077,7 +2515,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Lagos 24/7 Afro Mix',
     listenersEstimate: 13900,
-    description: 'Digital Lagos station streaming contemporary Afrobeats, street pop, and nonstop DJ mixes.'
+    description: 'Digital Lagos station streaming contemporary Afrobeats, street pop, and nonstop DJ mixes.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (2732 bytes, 570ms, icy: "Go Radio").'
   },
   {
     id: 'lagosjump-radio',
@@ -2096,7 +2538,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Naija Indie & Afropop Spotlight',
     listenersEstimate: 15100,
-    description: 'Independent Lagos online broadcaster championing emerging Afrobeats artists, live DJ sets, and diaspora culture.'
+    description: 'Independent Lagos online broadcaster championing emerging Afrobeats artists, live DJ sets, and diaspora culture.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (3254 bytes, 470ms, icy: "LagosJump Radio").'
   },
 
   // ==========================================
@@ -2120,7 +2566,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Lafia Morning Solid Mineral Digest',
     hostName: 'Danladi Aliyu',
     listenersEstimate: 21100,
-    description: 'FRCN Precious/Solid FM Lafia delivers in-depth news on solid mineral mining, agriculture, communal peace, and middle belt youth development.'
+    description: 'FRCN Precious/Solid FM Lafia delivers in-depth news on solid mineral mining, agriculture, communal peace, and middle belt youth development.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'nbs-lafia',
@@ -2139,7 +2590,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Rayuwar Al’umma',
     listenersEstimate: 15400,
-    description: 'State broadcaster providing local administrative reports and community development news.'
+    description: 'State broadcaster providing local administrative reports and community development news.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
 
   // ==========================================
@@ -2163,7 +2619,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Bida Morning Broadcast & Nupe Heritage',
     hostName: 'Mallam Ndagi Bida',
     listenersEstimate: 23500,
-    description: 'FRCN Power FM broadcasts from historic Bida, serving the Nupe kingdom and Niger State with civic dialogue, cultural folklore, and hydro-power news.'
+    description: 'FRCN Power FM broadcasts from historic Bida, serving the Nupe kingdom and Niger State with civic dialogue, cultural folklore, and hydro-power news.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'search-fm-minna',
@@ -2175,15 +2636,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North Central',
     languages: ['English', 'Pidgin'],
     genre: 'Youth & Urban Pop',
-    streamUrl: null,
+    streamUrl: 'https://searchfm.futminna.edu.ng/broadwave.mp3?src=1&rate=1',
     brandColor: '#303F9F',
     accentColor: '#C5CAE9',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Minna Tech Campus Drive',
     hostName: 'DJ Cyber',
     listenersEstimate: 17200,
-    description: 'Federal University of Technology Minna radio station, featuring tech debates, youth entertainment, and innovative student ideas.'
+    website: 'https://searchmedia.futminna.edu.ng',
+    description: 'Federal University of Technology Minna radio station, featuring tech debates, youth entertainment, and innovative student ideas.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Repaired from official FUT Minna Search FM broadcaster server (broadwave.mp3).'
   },
   {
     id: 'badeggi-fm-minna',
@@ -2203,7 +2669,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Minna Morning Pulse',
     hostName: 'Muhammadu Badeggi',
     listenersEstimate: 22400,
-    description: 'Badeggi 90.1 FM Minna broadcasts vibrant community talk, Nupe cultural shows, and local current affairs across Niger State.'
+    description: 'Badeggi 90.1 FM Minna broadcasts vibrant community talk, Nupe cultural shows, and local current affairs across Niger State.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (3971 bytes, 583ms, icy: "Badeggi Radio").'
   },
 
   // ==========================================
@@ -2227,7 +2697,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Daybreak Show with Dr. Niran Malaolu',
     hostName: 'Dr. Niran Malaolu',
     listenersEstimate: 35400,
-    description: 'Nigeria’s premier independent news and talk station in Ogun State, celebrated for fearless investigative journalism and public accountability.'
+    description: 'Nigeria’s premier independent news and talk station in Ogun State, celebrated for fearless investigative journalism and public accountability.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 296ms, icy: "Rockcity 1019FM Abeokuta").'
   },
   {
     id: 'ogbc-fm-abeokuta',
@@ -2247,7 +2721,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Egba Heritage & Aworo Gateway',
     hostName: 'Bisi Odebunmi',
     listenersEstimate: 27900,
-    description: 'Ogun State Broadcasting Corporation, a legendary voice that shaped Southwest broadcasting history, broadcasting highlife, fuji, and Yoruba proverbs.'
+    description: 'Ogun State Broadcasting Corporation, a legendary voice that shaped Southwest broadcasting history, broadcasting highlife, fuji, and Yoruba proverbs.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'eagle7-sports-abeokuta',
@@ -2267,7 +2746,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Mathematical Sports Breakfast',
     hostName: 'Chief Segun Odegbami',
     listenersEstimate: 24200,
-    description: 'Founded by Nigerian football legend Chief Segun Odegbami in Abeokuta, blending live sports analysis, classics, and inspiring youth talk.'
+    description: 'Founded by Nigerian football legend Chief Segun Odegbami in Abeokuta, blending live sports analysis, classics, and inspiring youth talk.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified via StreamGuys (icy-name: "Eagle 7 Sports Radio 103.7FM", 16384 bytes).'
   },
   {
     id: 'splash-fm-abeokuta',
@@ -2287,7 +2770,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Abeokuta Morning Review',
     hostName: 'Kunle Adewale',
     listenersEstimate: 21800,
-    description: 'Splash 106.7 FM Abeokuta delivers credible journalism, Yoruba cultural programs, and community-centered broadcasting.'
+    description: 'Splash 106.7 FM Abeokuta delivers credible journalism, Yoruba cultural programs, and community-centered broadcasting.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 642ms, icy: "Splash 106.7 FM Abeokuta").'
   },
   {
     id: 'eagle-fm-ilese',
@@ -2306,7 +2793,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Ijebu Morning Heritage',
     listenersEstimate: 16400,
-    description: 'Eagle 102.5 FM serves Ilese, Ijebu-Ode, and Ogun East with engaging news, Yoruba folklore, and contemporary hits.'
+    description: 'Eagle 102.5 FM serves Ilese, Ijebu-Ode, and Ogun East with engaging news, Yoruba folklore, and contemporary hits.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (5956 bytes, 1017ms, icy: "Eagle FM").'
   },
   {
     id: 'roots-fm-abeokuta',
@@ -2325,7 +2816,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Roots Evening Cruise',
     listenersEstimate: 17100,
-    description: 'Roots 97.1 FM Abeokuta blends modern Afrobeats with indigenous Yoruba programming across the Gateway State.'
+    description: 'Roots 97.1 FM Abeokuta blends modern Afrobeats with indigenous Yoruba programming across the Gateway State.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (15882 bytes, 1024ms, icy: "Roots 97.1FM").'
   },
   {
     id: 'wfm-ogun',
@@ -2345,7 +2840,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Women on Radio & Family Wellness',
     hostName: 'Toun Okewale Sonaiya',
     listenersEstimate: 22900,
-    description: 'Broadcasting from Arepo/Ogun corridor into Lagos, WFM 91.7 champions women’s voices, entrepreneurship, health, and family life.'
+    description: 'Broadcasting from Arepo/Ogun corridor into Lagos, WFM 91.7 champions women’s voices, entrepreneurship, health, and family life.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (8359 bytes, 161ms, icy: "http://myradiostream.com/wfm917").'
   },
   {
     id: 'super-fm-ijebu',
@@ -2364,7 +2863,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Super Morning Inspiration',
     listenersEstimate: 15800,
-    description: 'Super 96.3 FM brings wholesome family talk, inspiring music, and community stories across Ijebu-Ode and Ogun State.'
+    description: 'Super 96.3 FM brings wholesome family talk, inspiring music, and community stories across Ijebu-Ode and Ogun State.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (4096 bytes, 458ms, icy: "superfmijebu").'
   },
 
   // ==========================================
@@ -2380,15 +2883,20 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'South West',
     languages: ['Yoruba', 'English'],
     genre: 'Cultural & Community',
-    streamUrl: null,
+    streamUrl: 'https://centova.radioservers.biz/proxy/adaba889/stream',
     brandColor: '#C62828',
     accentColor: '#EF9A9A',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '96 kbps MP3',
     currentShow: 'Koko Inu Iwe Iroyin (Newspaper Review)',
     hostName: 'Bisi Omojola',
     listenersEstimate: 29100,
-    description: 'Beloved news and community station broadcasting across Ondo, Ekiti, and Osun states with Yoruba wit and community defense.'
+    website: 'https://adaba889.fm',
+    description: 'Beloved news and community station broadcasting across Ondo, Ekiti, and Osun states with Yoruba wit and community defense.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'HTTPS MP3 stream verified via centova.radioservers.biz/proxy/adaba889/stream (Icecast 2.4.3 / RadioBOSS Stream, 11224 bytes).'
   },
   {
     id: 'crest-fm-akure',
@@ -2408,7 +2916,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Akure Urban Jamz & Breakfast',
     listenersEstimate: 23500,
-    description: 'Crest 106.1 FM (formerly 87.7 FM) in Alagbaka, Akure delivers fresh Afrobeats, crisp news reviews, and Sunshine State community stories.'
+    description: 'Crest 106.1 FM (formerly 87.7 FM) in Alagbaka, Akure delivers fresh Afrobeats, crisp news reviews, and Sunshine State community stories.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 789ms, icy: "Crest 106.1 FM Akure").'
   },
   {
     id: 'orange-fm-akure',
@@ -2427,7 +2939,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Orange Morning Drive Akure',
     listenersEstimate: 19200,
-    description: 'Orange 94.5 FM Akure entertains Ondo State listeners with lively youth banter, cultural shows, and contemporary music.'
+    description: 'Orange 94.5 FM Akure entertains Ondo State listeners with lively youth banter, cultural shows, and contemporary music.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 800ms, icy: "ORANGE FM").'
   },
 
   // ==========================================
@@ -2451,7 +2967,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Eastern Horizon & Oro Oselu Osun',
     hostName: 'Femi Olanipekun',
     listenersEstimate: 28900,
-    description: 'Osun State’s favorite commercial station broadcasting in Osogbo, offering balanced political reviews, cultural arts coverage, and Afrobeats.'
+    description: 'Osun State’s favorite commercial station broadcasting in Osogbo, offering balanced political reviews, cultural arts coverage, and Afrobeats.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 794ms, icy: "Rave FM Osogbo").'
   },
   {
     id: 'crown-fm-ife',
@@ -2470,7 +2990,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Ooni’s Palace Court & Ile-Ife Heritage',
     listenersEstimate: 19400,
-    description: 'Located in ancient Ile-Ife, Crown FM honors historical Yoruba royalty, OAU campus life, and regional news.'
+    description: 'Located in ancient Ile-Ife, Crown FM honors historical Yoruba royalty, OAU campus life, and regional news.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Zeno mount returned HTTP 401 inactive encoder',
+    verificationNotes: 'Encoder offline during spaced verification.'
   },
   {
     id: 'osbc-fm-osogbo',
@@ -2489,7 +3014,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Osun Morning Heritage',
     listenersEstimate: 21600,
-    description: 'Osun State Broadcasting Corporation (OSBC 104.5 FM) brings public news, Yoruba cultural heritage, and classic juju and highlife.'
+    description: 'Osun State Broadcasting Corporation (OSBC 104.5 FM) brings public news, Yoruba cultural heritage, and classic juju and highlife.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 756ms, icy: "OSBC 104.5FM").'
   },
 
   // ==========================================
@@ -2513,7 +3042,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Morning Flight & Tiwa N Tiwa',
     hostName: 'Chief Adebayo Akande & Team',
     listenersEstimate: 37800,
-    description: 'Ibadan’s pioneer private radio station, renowned for investigative journalism, cultural richness, and Yoruba language pride.'
+    description: 'Ibadan’s pioneer private radio station, renowned for investigative journalism, cultural richness, and Yoruba language pride.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (14968 bytes, 310ms).'
   },
   {
     id: 'fresh-fm-ibadan',
@@ -2533,7 +3066,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Oja Oro & Tungba Morning Grooves',
     hostName: 'Dr. Yinka Ayefele (MON)',
     listenersEstimate: 41500,
-    description: 'Founded by gospel music legend Yinka Ayefele, Fresh FM serves Oyo and the South West with lively music, community advocacy, and Yoruba traditions.'
+    description: 'Founded by gospel music legend Yinka Ayefele, Fresh FM serves Oyo and the South West with lively music, community advocacy, and Yoruba traditions.',
+    streamFormat: 'AAC',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'AAC stream verified (16000 bytes, 933ms, icy: "Fresh 105.9 FM Ibadan").'
   },
   {
     id: 'lagelu-fm-ibadan',
@@ -2553,7 +3090,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Asa ati Ise Ile Yoruba',
     hostName: 'Akowe Yoruba',
     listenersEstimate: 18200,
-    description: '100% indigenous Yoruba language radio celebrating culture, oral folklore, traditional proverbs, and grassroots news.'
+    description: '100% indigenous Yoruba language radio celebrating culture, oral folklore, traditional proverbs, and grassroots news.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (14968 bytes, 312ms).'
   },
   {
     id: 'agidigbo-fm-ibadan',
@@ -2573,7 +3114,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Kokoro Alate & Town Hall',
     hostName: 'Oriyomi Hamzat',
     listenersEstimate: 34200,
-    description: 'Agidigbo 88.7 FM Ibadan is famed for grassroots advocacy, human-interest storytelling, and dynamic Yoruba public affairs.'
+    description: 'Agidigbo 88.7 FM Ibadan is famed for grassroots advocacy, human-interest storytelling, and dynamic Yoruba public affairs.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (2781 bytes, 268ms, icy: "Agidigbo 88.7 FM").'
   },
   {
     id: 'crest-fm-ibadan',
@@ -2592,7 +3137,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'The Crest Morning Brief',
     listenersEstimate: 21400,
-    description: 'Crest 91.1 FM Ibadan delivers insightful news analysis, lively Yoruba discussions, and modern Afrobeats across Oyo State.'
+    description: 'Crest 91.1 FM Ibadan delivers insightful news analysis, lively Yoruba discussions, and modern Afrobeats across Oyo State.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 750ms, icy: "Crest 91.1 FM Ibadan").'
   },
   {
     id: 'ibr-fm-ibadan',
@@ -2611,7 +3160,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'SME Market & Economy Hour',
     listenersEstimate: 18700,
-    description: 'Impact Business Radio 92.5 FM focuses on commerce, entrepreneurship, finance, and smooth classics for Ibadan professionals.'
+    description: 'Impact Business Radio 92.5 FM focuses on commerce, entrepreneurship, finance, and smooth classics for Ibadan professionals.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (2508 bytes, 511ms, icy: "Impact Business Radio").'
   },
   {
     id: 'yes-fm-ibadan',
@@ -2630,7 +3183,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'YES Morning Jamz',
     listenersEstimate: 17900,
-    description: 'YES 101.7 FM brings upbeat Afrobeats, campus culture, and engaging urban talk to Ibadan.'
+    description: 'YES 101.7 FM brings upbeat Afrobeats, campus culture, and engaging urban talk to Ibadan.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 730ms, icy: "YES 101.7 FM").'
   },
   {
     id: 'diamond-fm-ibadan',
@@ -2642,14 +3199,19 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'South West',
     languages: ['English', 'Yoruba'],
     genre: 'Cultural & Community',
-    streamUrl: 'https://cast1.asurahosting.com/proxy/brightb1/stream',
+    streamUrl: null,
     brandColor: '#283593',
     accentColor: '#9FA8DA',
     featured: false,
-    bitrate: '128 kbps MP3',
+    bitrate: 'Broadcast Only',
     currentShow: 'UI Academic Forum & Classics',
     listenersEstimate: 16500,
-    description: 'Broadcasting from the University of Ibadan campus with intellectual debates, educational features, and timeless music.'
+    description: 'Broadcasting from the University of Ibadan campus with intellectual debates, educational features, and timeless music.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'AsuraHosting mount returned HTTP 500 HTML',
+    verificationNotes: 'Former cast1.asurahosting.com/proxy/brightb1/stream returns HTTP 500 HTML; diamondfm.ui.edu.ng unreachable during audit.'
   },
   {
     id: '32fm-ibadan',
@@ -2668,7 +3230,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Ibadan Comedy Express',
     listenersEstimate: 22300,
-    description: '32 FM 94.9 Ibadan keeps listeners smiling with clean comedy, witty talk, and chart-topping Naija music.'
+    description: '32 FM 94.9 Ibadan keeps listeners smiling with clean comedy, witty talk, and chart-topping Naija music.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (14968 bytes, 251ms).'
   },
   {
     id: 'oluyole-fm-ibadan',
@@ -2687,7 +3253,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Iroyin Oyo & Asa Yoruba',
     listenersEstimate: 18400,
-    description: 'BCOS Oluyole 98.5 FM serves Oyo State with Yoruba news, traditional music, and community enlightenment.'
+    description: 'BCOS Oluyole 98.5 FM serves Oyo State with Yoruba news, traditional music, and community enlightenment.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (3607 bytes, 459ms, icy: "Oluyole FM Stream").'
   },
   {
     id: 'petals-fm-ibadan',
@@ -2706,7 +3276,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '64 kbps MP3',
     currentShow: 'Bodija Midday Flow',
     listenersEstimate: 15200,
-    description: 'Petals 102.3 FM broadcasts urban music, lifestyle conversations, and local features from New Bodija, Ibadan.'
+    description: 'Petals 102.3 FM broadcasts urban music, lifestyle conversations, and local features from New Bodija, Ibadan.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified via radio.fmmaria.com (icy-name: "Petals FM 102.3", 7940 bytes).'
   },
 
   // ==========================================
@@ -2730,7 +3304,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Jos Morning Breeze & Plateau Peace Forum',
     hostName: 'Gyang Pam',
     listenersEstimate: 31500,
-    description: 'Broadcasting from scenic, cool Jos, PRTV Peace FM promotes inter-faith harmony, agricultural wonders, and middle belt youth arts.'
+    description: 'Broadcasting from scenic, cool Jos, PRTV Peace FM promotes inter-faith harmony, agricultural wonders, and middle belt youth arts.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'rhythm-fm-jos',
@@ -2742,15 +3321,19 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North Central',
     languages: ['English', 'Pidgin'],
     genre: 'Afrobeats & Hits',
-    streamUrl: null,
+    streamUrl: 'https://rhythmfmjos-atunwadigital.streamguys1.com/rhythmfmjos/playlist.m3u8',
     brandColor: '#6A1B9A',
     accentColor: '#E1BEE7',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: 'HLS AAC',
     currentShow: 'The Jos Weekend Rave',
     hostName: 'Bella Dan',
     listenersEstimate: 21400,
-    description: 'Silverbird’s flagship entertainment station in Jos bringing world-class pop, R&B, and chilling beats to Plateau State.'
+    description: 'Silverbird’s flagship entertainment station in Jos bringing world-class pop, R&B, and chilling beats to Plateau State.',
+    streamFormat: 'HLS',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Official Atunwa Digital HLS manifest verified (#EXTM3U at /rhythmfmjos/playlist.m3u8).'
   },
   {
     id: 'kt-fm-jos',
@@ -2770,7 +3353,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Jos Plateau Morning Ride',
     hostName: 'Dachung Pam',
     listenersEstimate: 24800,
-    description: 'KT 103.9 FM broadcasts from Jos with engaging civic talk, youth music charts, and community stories across the Plateau.'
+    description: 'KT 103.9 FM broadcasts from Jos with engaging civic talk, youth music charts, and community stories across the Plateau.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 1465ms, icy: "KT 103.9 FM Jos").'
   },
 
   // ==========================================
@@ -2795,7 +3382,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Kulele Zone with Akas Baba',
     hostName: 'Akas Baba',
     listenersEstimate: 36100,
-    description: 'Port Harcourt’s heartbeat for oil city banter, street gist, Niger Delta development conversations, and Afrobeats.'
+    description: 'Port Harcourt’s heartbeat for oil city banter, street gist, Niger Delta development conversations, and Afrobeats.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 3449ms, icy: "WAZOBIA FM PH 128K").'
   },
   {
     id: 'nigeria-info-ph',
@@ -2815,7 +3406,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'The Hard Facts with Constance Mega',
     hostName: 'Constance Mega',
     listenersEstimate: 28300,
-    description: 'The standard for news, investigative debates, oil economy discussions, and sports coverage in the South South.'
+    description: 'The standard for news, investigative debates, oil economy discussions, and sports coverage in the South South.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 2337ms, icy: "NIGERIA INFO PH 128K").'
   },
   {
     id: 'today-fm-ph',
@@ -2827,15 +3422,19 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'South South',
     languages: ['English'],
     genre: 'Afrobeats & Hits',
-    streamUrl: null,
+    streamUrl: 'http://origin.atunwadigital.streamguys1.com/todayfm951',
     brandColor: '#512DA8',
     accentColor: '#D1C4E9',
     featured: false,
-    bitrate: 'Broadcast Only',
+    bitrate: '128 kbps MP3',
     currentShow: 'Afternoon Cruise PH',
     hostName: 'Chiamaka Joy',
     listenersEstimate: 16400,
-    description: 'Commercial radio catering to young professionals and music enthusiasts in Rivers State.'
+    description: 'Commercial radio catering to young professionals and music enthusiasts in Rivers State.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Official StreamGuys origin MP3 stream verified (icy: "TODAY 95.1FM", 10133 bytes; HTTPS-proxied via /api/stream-proxy).'
   },
   {
     id: 'cool-fm-ph',
@@ -2856,7 +3455,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Good Morning PH',
     hostName: 'Celine & Crew',
     listenersEstimate: 31400,
-    description: 'Cool FM 95.9 Port Harcourt spins the latest Afrobeats, R&B, and global chart toppers across the Niger Delta.'
+    description: 'Cool FM 95.9 Port Harcourt spins the latest Afrobeats, R&B, and global chart toppers across the Niger Delta.',
+    streamFormat: 'AAC',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'AAC stream verified (16384 bytes, 2132ms, icy: "COOL FM PH Fallback").'
   },
   {
     id: 'super-fm-ph',
@@ -2875,7 +3478,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Super Morning Show PH',
     listenersEstimate: 18700,
-    description: 'Wholesome lifestyle talk, inspirational music, and positive community programming for Port Harcourt families.'
+    description: 'Wholesome lifestyle talk, inspirational music, and positive community programming for Port Harcourt families.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (4096 bytes, 751ms, icy: "No Name").'
   },
   {
     id: '1radio-pitakwa',
@@ -2894,7 +3501,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Pitakwa Afro & Highlife Blend',
     listenersEstimate: 14100,
-    description: 'Digital Port Harcourt radio spotlighting Niger Delta music, Pitakwa street culture, and community voices.'
+    description: 'Digital Port Harcourt radio spotlighting Niger Delta music, Pitakwa street culture, and community voices.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (8179 bytes, 1255ms, icy: "1Radio Internatioinal").'
   },
 
   // ==========================================
@@ -2918,7 +3529,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Muryar Masarautar Sokoto',
     hostName: 'Mallam Bello Sokoto',
     listenersEstimate: 32400,
-    description: 'Broadcasting from the seat of the Caliphate in Sokoto, bringing Islamic moral history, agricultural extension, and Hausa journalism.'
+    description: 'Broadcasting from the seat of the Caliphate in Sokoto, bringing Islamic moral history, agricultural extension, and Hausa journalism.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 720ms, icy: "Rima FM").'
   },
   {
     id: 'vision-fm-sokoto',
@@ -2937,7 +3552,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Vision Safiya',
     listenersEstimate: 18900,
-    description: 'Private FM station in Sokoto delivering civic education, current affairs, and moral values for Northern listeners.'
+    description: 'Private FM station in Sokoto delivering civic education, current affairs, and moral values for Northern listeners.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Zeno mount returned HTTP 503 Service Unavailable',
+    verificationNotes: 'Zeno mount inactive during audit.'
   },
 
   // ==========================================
@@ -2961,7 +3581,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Mambilla Mountain Breeze & Agrarian Hour',
     hostName: 'Suleiman Jalingo',
     listenersEstimate: 20100,
-    description: 'FRCN Pride FM Jalingo broadcasts across the stunning landscape of Taraba, covering tea plantations on the Mambilla plateau and livestock farming.'
+    description: 'FRCN Pride FM Jalingo broadcasts across the stunning landscape of Taraba, covering tea plantations on the Mambilla plateau and livestock farming.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'tsbs-jalingo',
@@ -2980,7 +3605,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Zaman Lafiya a Taraba',
     listenersEstimate: 14300,
-    description: 'State government service keeping Jalingo and rural Taraba connected through community health and cultural broadcasts.'
+    description: 'State government service keeping Jalingo and rural Taraba connected through community health and cultural broadcasts.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'rock-fm-jalingo',
@@ -3000,7 +3630,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Jalingo Drive Time Beats',
     hostName: 'Yusuf Taraba',
     listenersEstimate: 17600,
-    description: 'Rock FM 92.3 Jalingo brings vibrant urban music, youth entertainment, and local community conversations across Taraba State.'
+    description: 'Rock FM 92.3 Jalingo brings vibrant urban music, youth entertainment, and local community conversations across Taraba State.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 617ms, icy: "Rock FM 92.3 Jalingo").'
   },
 
   // ==========================================
@@ -3024,7 +3658,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Labaran Damaturu & Sahel Recovery',
     hostName: 'Bukar Damaturu',
     listenersEstimate: 21800,
-    description: 'Yobe Broadcasting Corporation provides community news, desertification control awareness, and trade news from Potiskum cattle market.'
+    description: 'Yobe Broadcasting Corporation provides community news, desertification control awareness, and trade news from Potiskum cattle market.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
   {
     id: 'sunshine-fm-potiskum',
@@ -3043,7 +3682,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Kasuwancin Arewa',
     listenersEstimate: 15700,
-    description: 'FRCN Sunshine FM 104.5 (formerly 88.1 FM) in Potiskum, Yobe broadcasts livestock market pricing, grain trade updates, and community stories.'
+    description: 'FRCN Sunshine FM 104.5 (formerly 88.1 FM) in Potiskum, Yobe broadcasts livestock market pricing, grain trade updates, and community stories.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (5956 bytes, 5863ms, icy: "Sunshine FM 104.5 Yobe").'
   },
 
   // ==========================================
@@ -3067,7 +3710,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Zaman Lafiya Da Noma a Zamfara',
     hostName: 'Aliyu Gusau',
     listenersEstimate: 21300,
-    description: 'FRCN Pride FM Gusau is a vital source of farming advisories, gold mining regulations, peace advocacy, and Hausa poetry.'
+    description: 'FRCN Pride FM Gusau is a vital source of farming advisories, gold mining regulations, peace advocacy, and Hausa poetry.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 974ms, icy: "PRIDE FM GUSAU").'
   },
   {
     id: 'zamfara-state-radio',
@@ -3086,7 +3733,12 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: 'Broadcast Only',
     currentShow: 'Karatun Alkur’ani da Tafseer',
     listenersEstimate: 16500,
-    description: 'State government broadcast station broadcasting moral guidance, local administrative news, and community notices.'
+    description: 'State government broadcast station broadcasting moral guidance, local administrative news, and community notices.',
+    streamFormat: 'Offline',
+    verificationStatus: 'OFFLINE',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Live stream currently unavailable.',
+    verificationNotes: 'No working official live stream endpoint found during audit.'
   },
 
   // ==========================================
@@ -3102,17 +3754,21 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North Central',
     languages: ['Pidgin', 'English', 'Hausa'],
     genre: 'Pidgin & Comedy',
-    streamUrl: 'https://wazobiafmabuja995-atunwadigital.streamguys1.com/wazobiafmabuja995',
+    streamUrl: 'https://wazobiafmabuja995-atunwadigital.streamguys1.com/wazobiafmabuja995/playlist.m3u8',
     brandColor: '#F57C00',
     accentColor: '#FFE082',
     featured: true,
-    bitrate: '128 kbps MP3',
+    bitrate: '128 kbps HLS',
     currentShow: 'Abuja Tori with Big Mo',
     hostName: 'Big Mo',
     website: 'https://wazobiafm.com/abuja',
     twitter: '@WazobiaFM_Abuja',
     listenersEstimate: 34200,
-    description: 'Bringing the authentic Pidgin excitement, traffic banter, and heavy Afrobeats to the capital territory.'
+    description: 'Bringing the authentic Pidgin excitement, traffic banter, and heavy Afrobeats to the capital territory.',
+    streamFormat: 'HLS',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Upgraded broken MP3 path (HTTP 502) to official StreamGuys HLS playlist (#EXTM3U verified).'
   },
   {
     id: 'nigeria-info-abuja',
@@ -3124,17 +3780,21 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North Central',
     languages: ['English'],
     genre: 'News & Talk',
-    streamUrl: 'https://nigeriainfofmabuja951-atunwadigital.streamguys1.com/nigeriainfofmabuja951',
+    streamUrl: 'https://nigeriainfofmabuja951-atunwadigital.streamguys1.com/nigeriainfofmabuja951/playlist.m3u8',
     brandColor: '#004D40',
     accentColor: '#80CBC4',
     featured: true,
-    bitrate: '128 kbps MP3',
+    bitrate: '128 kbps HLS',
     currentShow: 'Capital Politics Today & Senate Review',
     hostName: 'Amina Bello',
     website: 'https://nigeriainfo.fm',
     twitter: '@InfoAbuja951',
     listenersEstimate: 29400,
-    description: 'Direct reporting from the corridors of power in Abuja, policy breakdowns, and citizen-led dialogues.'
+    description: 'Direct reporting from the corridors of power in Abuja, policy breakdowns, and citizen-led dialogues.',
+    streamFormat: 'HLS',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Upgraded broken MP3 path (HTTP 502) to official StreamGuys HLS playlist (#EXTM3U verified).'
   },
   {
     id: 'brekete-family-abuja',
@@ -3155,7 +3815,12 @@ export const INITIAL_STATIONS: Station[] = [
     hostName: 'Ordinary Ahmad Isah',
     twitter: '@BreketeFamily',
     listenersEstimate: 51200,
-    description: 'Phenomenally popular grassroots radio program fighting for citizen rights, resolving disputes, and providing immediate humanitarian support.'
+    description: 'Phenomenally popular grassroots radio program fighting for citizen rights, resolving disputes, and providing immediate humanitarian support.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Public Zeno mount timed out and official website exposed no audio stream',
+    verificationNotes: 'No reachable public audio stream found during audit.'
   },
   {
     id: 'kiss-fm-abuja',
@@ -3175,7 +3840,12 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Drive Time Capital Mix',
     hostName: 'DJ Smooth',
     listenersEstimate: 14000,
-    description: 'Contemporary hit radio serving the Federal Capital Territory with smooth R&B, Afro-fusion, and chilled rhythms.'
+    description: 'Contemporary hit radio serving the Federal Capital Territory with smooth R&B, Afro-fusion, and chilled rhythms.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Discovered streamerr.co endpoint returned HTML page instead of audio',
+    verificationNotes: 'mars.streamerr.co/8082/stream serves text/html; no valid audio endpoint active.'
   },
   {
     id: 'classic-fm-abuja',
@@ -3195,7 +3865,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Abuja Morning Classics',
     hostName: 'Chidi Okonkwo',
     listenersEstimate: 26800,
-    description: 'Classic FM 94.3 Abuja brings smooth soul, golden highlife, jazz, and refined conversation to the Federal Capital Territory.'
+    description: 'Classic FM 94.3 Abuja brings smooth soul, golden highlife, jazz, and refined conversation to the Federal Capital Territory.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16384 bytes, 1688ms, icy: "Classic FM").'
   },
   {
     id: 'raypower-abuja',
@@ -3211,11 +3885,15 @@ export const INITIAL_STATIONS: Station[] = [
     brandColor: '#B71C1C',
     accentColor: '#FFCDD2',
     featured: false,
-    bitrate: '128 kbps OGG',
+    bitrate: '128 kbps MP3',
     currentShow: 'Political Platform & Power Morning',
     hostName: 'Ait News Desk',
     listenersEstimate: 28900,
-    description: 'Raypower 100.5 FM Abuja delivers breaking national news, political talk, and classic Nigerian pop from the capital city.'
+    description: 'Raypower 100.5 FM Abuja delivers breaking national news, political talk, and classic Nigerian pop from the capital city.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'Official HearThis Icecast stream verified live (icy: "Raypower 100.5FM Abuja", 2508 bytes).'
   },
   {
     id: 'kapital-fm-abuja',
@@ -3227,16 +3905,21 @@ export const INITIAL_STATIONS: Station[] = [
     region: 'North Central',
     languages: ['English', 'Hausa', 'Pidgin'],
     genre: 'News & Talk',
-    streamUrl: 'https://cast4.asurahosting.com/proxy/radioni1/stream/;',
+    streamUrl: null,
     brandColor: '#00695C',
     accentColor: '#80CBC4',
     featured: false,
-    bitrate: '128 kbps MP3',
+    bitrate: 'Broadcast Only',
     currentShow: 'Kapital Morning Digest',
     hostName: 'FRCN Abuja Desk',
     website: 'https://kapitalfm.gov.ng',
     listenersEstimate: 24300,
-    description: 'FRCN Kapital FM 92.9 Abuja is the flagship public broadcaster in the Federal Capital Territory covering national civic news and culture.'
+    description: 'FRCN Kapital FM 92.9 Abuja is the flagship public broadcaster in the Federal Capital Territory covering national civic news and culture.',
+    streamFormat: 'Offline',
+    verificationStatus: 'BROKEN',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationError: 'Official FRCN and MyControlPanel endpoints unreachable / HTTP 502',
+    verificationNotes: 'Former asurahosting.com/proxy/radioni1/stream timed out and updated kapitalfm.gov.ng endpoint cast4.my-control-panel.com/proxy/radioni1/Stream returned HTTP 502.'
   },
   {
     id: 'vision-fm-abuja',
@@ -3256,7 +3939,11 @@ export const INITIAL_STATIONS: Station[] = [
     currentShow: 'Idon Mikiya (Eagle Eye)',
     hostName: 'Abubakar Musa',
     listenersEstimate: 25600,
-    description: 'Vision 92.1 FM Abuja combines fearless Hausa and English current affairs talk with community development and moral education.'
+    description: 'Vision 92.1 FM Abuja combines fearless Hausa and English current affairs talk with community development and moral education.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (16000 bytes, 586ms, icy: "Vision Fm 92.1 Abuja").'
   },
   {
     id: 'kcity-radio-abuja',
@@ -3275,7 +3962,11 @@ export const INITIAL_STATIONS: Station[] = [
     bitrate: '128 kbps MP3',
     currentShow: 'Abuja City Lights Mix',
     listenersEstimate: 12900,
-    description: 'Digital radio station streaming fresh Afropop, R&B, and urban entertainment from Abuja.'
+    description: 'Digital radio station streaming fresh Afropop, R&B, and urban entertainment from Abuja.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (4096 bytes, 361ms, icy: "Kcity Radio").'
   },
 
   // ==========================================
@@ -3301,6 +3992,10 @@ export const INITIAL_STATIONS: Station[] = [
     website: 'https://bbchausa.com',
     twitter: '@bbchausa',
     listenersEstimate: 85000,
-    description: 'The most listened-to international Hausa language radio service in Nigeria and West Africa, delivering global news and investigative stories.'
+    description: 'The most listened-to international Hausa language radio service in Nigeria and West Africa, delivering global news and investigative stories.',
+    streamFormat: 'MP3',
+    verificationStatus: 'VERIFIED',
+    lastCheckedAt: '2026-11-26T13:15:00.000Z',
+    verificationNotes: 'MP3 stream verified (4096 bytes, 798ms, icy: "BBC Radio").'
   }
 ];

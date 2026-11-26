@@ -167,18 +167,21 @@ export const SuggestStationModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-md animate-fade-in">
+    <div
+      onClick={handleClose}
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-2 sm:p-5 bg-black/80 backdrop-blur-md animate-fade-in"
+    >
       <div 
-        className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-gradient-to-b from-[#092c1a] to-[#04160d] border border-emerald-700/80 rounded-3xl shadow-2xl text-white p-5 sm:p-8"
+        className="relative w-full max-w-2xl max-h-[88vh] sm:max-h-[92vh] overflow-y-auto bg-gradient-to-b from-[#092c1a] to-[#04160d] border border-emerald-700/80 rounded-2xl sm:rounded-3xl shadow-2xl text-white p-4 sm:p-7"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-emerald-950/80 text-emerald-300 hover:text-white hover:bg-emerald-900 border border-emerald-700/50 transition-colors z-20"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-full bg-emerald-950/80 text-emerald-300 hover:text-white hover:bg-emerald-900 border border-emerald-700/50 transition-colors z-20 cursor-pointer"
           title="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {isSuccess ? (
@@ -215,26 +218,24 @@ export const SuggestStationModal: React.FC = () => {
         ) : (
           /* Form Content */
           <>
-            <div className="mb-6">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30">
-                  COMMUNITY SUGGESTION 🎙️
-                </span>
+            <div className="mb-3.5 sm:mb-5 pr-8">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-amber-300 mb-0.5">
+                Community Submission
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-white font-['Cabinet_Grotesk',sans-serif]">
-                Suggest a Nigerian Radio Station
+              <h2 className="text-lg sm:text-2xl font-black text-white font-['Cabinet_Grotesk',sans-serif]">
+                Suggest a Radio Station
               </h2>
-              <p className="text-xs sm:text-sm text-emerald-300/80 mt-1">
-                Know an ogbonge station we need to include? Submit its frequency, location, and stream so listeners everywhere can tune in!
+              <p className="text-[11px] sm:text-sm text-emerald-300/80 mt-0.5 line-clamp-2">
+                Add a Nigerian station’s frequency, location, and live stream so listeners everywhere can tune in.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 text-xs sm:text-sm">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
               
               {/* Row 1: Station Name & Frequency */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
                 <div>
-                  <label className="block font-bold text-emerald-200 mb-1">
+                  <label className="block font-bold text-emerald-200 mb-1 text-[11px] sm:text-xs">
                     Station Name <span className="text-amber-400">*</span>
                   </label>
                   <input
@@ -242,13 +243,13 @@ export const SuggestStationModal: React.FC = () => {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Wazobia FM, Splash FM, Freedom Radio"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
+                    placeholder="e.g. Wazobia FM, Splash FM"
+                    className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-emerald-200 mb-1">
+                  <label className="block font-bold text-emerald-200 mb-1 text-[11px] sm:text-xs">
                     Frequency / Dial <span className="text-amber-400">*</span>
                   </label>
                   <input
@@ -256,57 +257,57 @@ export const SuggestStationModal: React.FC = () => {
                     required
                     value={frequency}
                     onChange={(e) => setFrequency(e.target.value)}
-                    placeholder="e.g. 95.1 FM, 99.3 FM, or Online HD"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
+                    placeholder="e.g. 95.1 FM or Online HD"
+                    className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
                   />
                 </div>
               </div>
 
               {/* Row 2: State & City */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
                 <div>
-                  <label className="block font-bold text-emerald-200 mb-1 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                    <span>State (36 States + FCT)</span>
+                  <label className="block font-bold text-emerald-200 mb-1 flex items-center gap-1 text-[11px] sm:text-xs">
+                    <MapPin className="w-3 h-3 text-amber-400 shrink-0" />
+                    <span className="truncate">State</span>
                   </label>
                   <select
                     value={state}
                     onChange={(e) => handleStateChange(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400 cursor-pointer"
+                    className="w-full px-2.5 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400 cursor-pointer"
                   >
                     {NIGERIAN_STATES.map((s) => (
                       <option key={s.name} value={s.name}>
-                        {s.name} ({s.region})
+                        {s.name}
                       </option>
                     ))}
                   </select>
                 </div>
 
                 <div>
-                  <label className="block font-bold text-emerald-200 mb-1 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                    <span>City / Town</span>
+                  <label className="block font-bold text-emerald-200 mb-1 flex items-center gap-1 text-[11px] sm:text-xs">
+                    <MapPin className="w-3 h-3 text-amber-400 shrink-0" />
+                    <span className="truncate">City / Town</span>
                   </label>
                   <input
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder="e.g. Ikeja, Kano, Ibadan, Port Harcourt"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
+                    placeholder="e.g. Ikeja, Kano"
+                    className="w-full px-2.5 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
                   />
                 </div>
               </div>
 
               {/* Row 3: Genre & Tagline */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
                 <div>
-                  <label className="block font-bold text-emerald-200 mb-1">
+                  <label className="block font-bold text-emerald-200 mb-1 text-[11px] sm:text-xs">
                     Primary Genre
                   </label>
                   <select
                     value={genre}
                     onChange={(e) => setGenre(e.target.value as StationGenre)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400 cursor-pointer"
+                    className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400 cursor-pointer"
                   >
                     {ALL_GENRES.map((g) => (
                       <option key={g} value={g}>
@@ -317,26 +318,26 @@ export const SuggestStationModal: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-bold text-emerald-200 mb-1">
+                  <label className="block font-bold text-emerald-200 mb-1 text-[11px] sm:text-xs">
                     Slogan / Tagline
                   </label>
                   <input
                     type="text"
                     value={tagline}
                     onChange={(e) => setTagline(e.target.value)}
-                    placeholder="e.g. Oya make we talk!, Voice of the people"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
+                    placeholder="e.g. Voice of the people"
+                    className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-[#061e12] border border-emerald-700/60 text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
                   />
                 </div>
               </div>
 
               {/* Row 4: Broadcast Languages */}
               <div>
-                <label className="block font-bold text-emerald-200 mb-1.5 flex items-center gap-1">
-                  <Globe className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Broadcast Languages (Tap to select)</span>
+                <label className="block font-bold text-emerald-200 mb-1 flex items-center gap-1 text-[11px] sm:text-xs">
+                  <Globe className="w-3 h-3 text-amber-400" />
+                  <span>Broadcast Languages</span>
                 </label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {ALL_LANGUAGES.map((lang) => {
                     const isSelected = selectedLanguages.includes(lang);
                     return (
@@ -344,7 +345,7 @@ export const SuggestStationModal: React.FC = () => {
                         type="button"
                         key={lang}
                         onClick={() => toggleLanguage(lang)}
-                        className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
                           isSelected
                             ? 'bg-amber-400 text-emerald-950 font-bold shadow-sm'
                             : 'bg-[#061e12] text-emerald-300 border border-emerald-800 hover:border-emerald-600'
@@ -358,7 +359,7 @@ export const SuggestStationModal: React.FC = () => {
               </div>
 
               {/* Row 5: Stream URL with Test Feature */}
-              <div className="bg-[#051c11] p-3.5 rounded-2xl border border-emerald-800/60">
+              <div className="bg-[#051c11] p-3 rounded-xl sm:rounded-2xl border border-emerald-800/60">
                 <div className="flex items-center justify-between mb-1">
                   <label className="block font-bold text-emerald-200 flex items-center gap-1.5">
                     <Radio className="w-4 h-4 text-amber-400" />

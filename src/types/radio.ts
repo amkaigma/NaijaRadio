@@ -31,6 +31,13 @@ export type StationGenre =
   | 'Cultural & Community'
   | 'Islamic & Talk';
 
+export type StreamVerificationStatus =
+  | 'VERIFIED'
+  | 'UNVERIFIED'
+  | 'OFFLINE'
+  | 'BROKEN'
+  | 'NEEDS REVIEW';
+
 export interface Station {
   id: string;
   name: string;
@@ -43,6 +50,11 @@ export interface Station {
   genre: StationGenre;
   streamUrl: string | null; // Can be null/empty for offline stations
   backupStreamUrl?: string;
+  streamFormat?: string;
+  verificationStatus?: StreamVerificationStatus;
+  lastCheckedAt?: string;
+  verificationError?: string;
+  verificationNotes?: string;
   logoUrl?: string;
   brandColor: string;
   accentColor: string;
@@ -59,7 +71,7 @@ export interface Station {
   description?: string;
 }
 
-export type ViewTab = 'discover' | 'browse' | 'favorites' | 'recent' | 'suggest';
+export type ViewTab = 'discover' | 'browse' | 'favorites' | 'recent' | 'health' | 'suggest';
 
 export interface FilterState {
   searchQuery: string;

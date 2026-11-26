@@ -28,80 +28,79 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectState, onSelectG
   ];
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#062c19] via-[#041f12] to-[#02130a] border border-emerald-800/60 shadow-2xl p-6 sm:p-10 mb-8">
+    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#062c19] via-[#041f12] to-[#02130a] border border-emerald-800/60 shadow-2xl p-3.5 sm:p-8 mb-4 sm:mb-7">
       
-      {/* Background Decorative Nigerian Flag Green Glow and Ankara Motif Accents */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-4 right-6 opacity-10 pointer-events-none text-emerald-400">
-        <Radio className="w-64 h-64 -rotate-12" />
+      {/* Background Decorative Glow */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute top-4 right-6 opacity-10 pointer-events-none text-emerald-400">
+        <Radio className="w-56 h-56 -rotate-12" />
       </div>
 
       <div className="relative z-10 max-w-3xl">
         
-        {/* Pill Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-700/60 text-xs text-emerald-300 font-semibold mb-4 shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span className="font-bold text-amber-300">Naija Live Radio Stream</span>
-          <span className="text-emerald-500">•</span>
-          <span>From Lagos to Kano & Beyond 🇳🇬</span>
+        {/* Clean Eyebrow */}
+        <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-emerald-300/85 font-semibold mb-1.5 sm:mb-3">
+          <span className="font-bold text-amber-300">Naija Live Radio</span>
+          <span aria-hidden="true" className="text-emerald-500">·</span>
+          <span>Lagos to Kano & Beyond 🇳🇬</span>
         </div>
 
         {/* Main Title */}
-        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight font-['Cabinet_Grotesk',sans-serif] mb-3">
+        <h1 className="text-xl sm:text-4xl font-black text-white tracking-tight leading-snug font-['Cabinet_Grotesk',sans-serif] mb-1.5 sm:mb-2.5 text-balance">
           Listen to <span className="text-emerald-400">Nigerian Radio</span> Wherever You Dey.
         </h1>
 
-        <p className="text-sm sm:text-base text-emerald-200/90 leading-relaxed mb-6 max-w-2xl font-normal">
-          Tune in live to Nigeria’s favorite radio stations across all 36 states and the FCT. From Afrobeats, Pidgin banter, in-depth political discourse, football sports commentary to indigenous Hausa, Yoruba, and Igbo broadcasts.
+        <p className="text-xs sm:text-sm text-emerald-200/85 leading-relaxed mb-3 sm:mb-5 max-w-2xl line-clamp-2 sm:line-clamp-none">
+          Tune in live across all 36 states and the FCT — Afrobeats, Pidgin talk, sports, and Hausa, Yoruba, Igbo & Fulfulde broadcasts.
         </p>
 
-        {/* Highlight Stats Grid */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 max-w-md">
-          <div className="bg-[#051f13]/80 p-3 rounded-2xl border border-emerald-800/60">
-            <div className="text-xl sm:text-2xl font-black text-amber-400 font-mono">
+        {/* Compact Stats Grid */}
+        <div className="grid grid-cols-3 gap-1.5 sm:gap-3 mb-3 sm:mb-5 max-w-md">
+          <div className="bg-[#051f13]/85 px-2.5 py-1.5 sm:p-2.5 rounded-xl border border-emerald-800/60">
+            <div className="text-base sm:text-xl font-black text-amber-400 font-mono tabular-nums">
               {liveCount}
             </div>
-            <div className="text-[11px] sm:text-xs text-emerald-300/80 font-medium">
+            <div className="text-[10px] sm:text-xs text-emerald-300/80 font-medium leading-tight">
               Live Streams
             </div>
           </div>
 
-          <div className="bg-[#051f13]/80 p-3 rounded-2xl border border-emerald-800/60">
-            <div className="text-xl sm:text-2xl font-black text-white font-mono">
+          <div className="bg-[#051f13]/85 px-2.5 py-1.5 sm:p-2.5 rounded-xl border border-emerald-800/60">
+            <div className="text-base sm:text-xl font-black text-white font-mono tabular-nums">
               36 + FCT
             </div>
-            <div className="text-[11px] sm:text-xs text-emerald-300/80 font-medium">
-              States Covered
+            <div className="text-[10px] sm:text-xs text-emerald-300/80 font-medium leading-tight">
+              States
             </div>
           </div>
 
-          <div className="bg-[#051f13]/80 p-3 rounded-2xl border border-emerald-800/60">
-            <div className="text-xl sm:text-2xl font-black text-emerald-400 font-mono">
+          <div className="bg-[#051f13]/85 px-2.5 py-1.5 sm:p-2.5 rounded-xl border border-emerald-800/60">
+            <div className="text-base sm:text-xl font-black text-emerald-400 font-mono tabular-nums">
               6
             </div>
-            <div className="text-[11px] sm:text-xs text-emerald-300/80 font-medium">
-              Geo Regions
+            <div className="text-[10px] sm:text-xs text-emerald-300/80 font-medium leading-tight">
+              Regions
             </div>
           </div>
         </div>
 
-        {/* State Jump Shortcuts */}
-        <div className="pt-2">
-          <div className="text-xs font-bold uppercase tracking-wider text-emerald-300/70 mb-2 flex items-center gap-1.5">
-            <MapPin className="w-3.5 h-3.5 text-amber-400" />
-            <span>Quick jump to top broadcasting states:</span>
+        {/* State Jump Shortcuts (single-row horizontal scroll on mobile, wrap on desktop) */}
+        <div>
+          <div className="text-[11px] font-semibold text-emerald-300/75 mb-1.5 flex items-center gap-1">
+            <MapPin className="w-3 h-3 text-amber-400 shrink-0" />
+            <span>Quick jump by state:</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar sm:flex-wrap pb-0.5">
             {topStates.map((st) => (
               <button
                 key={st.name}
                 onClick={() => onSelectState(st.name)}
-                className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#09301d] text-emerald-200 hover:text-white hover:bg-emerald-700/60 border border-emerald-700/50 transition-all flex items-center gap-1.5 cursor-pointer active:scale-95"
+                className="shrink-0 px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-semibold bg-[#09301d] text-emerald-200 hover:text-white hover:bg-emerald-700/60 border border-emerald-700/50 transition-colors flex items-center gap-1.5 cursor-pointer active:scale-95 whitespace-nowrap"
               >
                 <span>{st.name}</span>
-                <span className="px-1.5 py-0.2 rounded-md bg-emerald-950 text-amber-400 text-[10px] font-bold">
+                <span className="text-amber-400 text-[10px] font-bold tabular-nums">
                   {st.count}
                 </span>
               </button>
@@ -109,9 +108,9 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectState, onSelectG
 
             <button
               onClick={openSuggestModal}
-              className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-400/10 text-amber-300 hover:bg-amber-400/20 border border-amber-400/30 transition-all ml-1 cursor-pointer"
+              className="shrink-0 px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-semibold bg-amber-400/10 text-amber-300 hover:bg-amber-400/20 border border-amber-400/30 transition-colors cursor-pointer whitespace-nowrap"
             >
-              + Add Missing Station
+              + Add Station
             </button>
           </div>
         </div>
